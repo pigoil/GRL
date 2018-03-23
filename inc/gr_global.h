@@ -12,6 +12,7 @@
 #ifndef NULL
 #define NULL 0 //定义NULL
 #endif
+#define GR_NO_USE(n) (void)n
 
 /****伪随机数生成函数****/
 uc16 RAND_MAX = 32767;//随机数最大值 最小值为0

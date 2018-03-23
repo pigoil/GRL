@@ -3,7 +3,7 @@
 
 //typedef unsigned int uint32_t;
 
-//SDIOœ‡πÿ±Í÷æŒª
+//SDIOÁõ∏ÂÖ≥Ê†áÂøó‰Ωç
 #define SDIO_FLAG_CCRCFAIL                  ((uint32_t)0x00000001)
 #define SDIO_FLAG_DCRCFAIL                  ((uint32_t)0x00000002)
 #define SDIO_FLAG_CTIMEOUT                  ((uint32_t)0x00000004)
@@ -29,7 +29,7 @@
 #define SDIO_FLAG_SDIOIT                    ((uint32_t)0x00400000)
 #define SDIO_FLAG_CEATAEND                  ((uint32_t)0x00800000)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//SDIO ÷∏¡ÓºØ
+//SDIO Êåá‰ª§ÈõÜ
 #define SD_CMD_GO_IDLE_STATE                       ((u8)0)
 #define SD_CMD_SEND_OP_COND                        ((u8)1)
 #define SD_CMD_ALL_SEND_CID                        ((u8)2)
@@ -79,7 +79,7 @@
 
 /** 
   * @brief Following commands are SD Card Specific commands.
-  *        SDIO_APP_CMD £∫CMD55 should be sent before sending these commands. 
+  *        SDIO_APP_CMD ÔºöCMD55 should be sent before sending these commands. 
   */
 #define SD_CMD_APP_SD_SET_BUSWIDTH                 ((u8)6)  /*!< For SD Card only */
 #define SD_CMD_SD_APP_STAUS                        ((u8)13) /*!< For SD Card only */
@@ -106,7 +106,7 @@
 #define SD_CMD_SD_APP_CHANGE_SECURE_AREA           ((u8)49) /*!< For SD Card only */
 #define SD_CMD_SD_APP_SECURE_WRITE_MKB             ((u8)48) /*!< For SD Card only */
   			   
-//÷ß≥÷µƒSDø®∂®“Â
+//ÊîØÊåÅÁöÑSDÂç°ÂÆö‰πâ
 #define SDIO_STD_CAPACITY_SD_CARD_V1_1             ((u32)0x00000000)
 #define SDIO_STD_CAPACITY_SD_CARD_V2_0             ((u32)0x00000001)
 #define SDIO_HIGH_CAPACITY_SD_CARD                 ((u32)0x00000002)
@@ -116,8 +116,10 @@
 #define SDIO_SECURE_DIGITAL_IO_COMBO_CARD          ((u32)0x00000006)
 #define SDIO_HIGH_CAPACITY_MMC_CARD                ((u32)0x00000007)
 
-//SDIOœ‡πÿ≤Œ ˝∂®“Â
+//SDIOÁõ∏ÂÖ≥ÂèÇÊï∞ÂÆö‰πâ
+#ifndef NULL
 #define NULL 0
+#endif
 #define SDIO_STATIC_FLAGS               ((u32)0x000005FF)
 #define SDIO_CMD0TIMEOUT                ((u32)0x00002710)	  
 #define SDIO_DATATIMEOUT                ((u32)0x0001FFFF)	  
@@ -179,26 +181,26 @@
 #define SD_CCCC_WRITE_PROT              ((u32)0x00000040)
 #define SD_CCCC_ERASE                   ((u32)0x00000020)
 																	 
-//CMD8÷∏¡Ó
+//CMD8Êåá‰ª§
 #define SDIO_SEND_IF_COND               ((u32)0x00000008)
 
 
-//”√ªß≈‰÷√«¯			  
-//SDIO ±÷”º∆À„π´ Ω:SDIO_CK ±÷”=SDIOCLK/[clkdiv+2];∆‰÷–,SDIOCLK“ª∞„Œ™72Mhz
-// π”√DMAƒ£ Ωµƒ ±∫Ú,¥´ ‰ÀŸ¬ ø…“‘µΩ24Mhz,≤ªπ˝»Áπ˚ƒ„µƒø®≤ª «∏ﬂÀŸø®,ø…ƒ‹“≤ª·≥ˆ¥Ì
-//≥ˆ¥ÌæÕ«ÎΩµµÕ ±÷”, π”√≤È—Øƒ£ Ωµƒª∞,Õ∆ºˆSDIO_TRANSFER_CLK_DIV…Ë÷√Œ™3ªÚ’ﬂ∏¸¥Û
-#define SDIO_INIT_CLK_DIV        0xB2 		//SDIO≥ı ºªØ∆µ¬ £¨◊Ó¥Û400Kh  
-#define SDIO_TRANSFER_CLK_DIV    0x04		//SDIO¥´ ‰∆µ¬ ,∏√÷µÃ´–°ø…ƒ‹ª·µº÷¬∂¡–¥Œƒº˛≥ˆ¥Ì 
-//SDIOπ§◊˜ƒ£ Ω∂®“Â,Õ®π˝SD_SetDeviceMode∫Ø ˝…Ë÷√.
-#define SD_POLLING_MODE    	0  	//≤È—Øƒ£ Ω,∏√ƒ£ Ωœ¬,»Áπ˚∂¡–¥”–Œ Ã‚,Ω®“È‘ˆ¥ÛSDIO_TRANSFER_CLK_DIVµƒ…Ë÷√.
-#define SD_DMA_MODE    		1	//DMAƒ£ Ω,∏√ƒ£ Ωœ¬,»Áπ˚∂¡–¥”–Œ Ã‚,Ω®“È‘ˆ¥ÛSDIO_TRANSFER_CLK_DIVµƒ…Ë÷√.   
+//Áî®Êà∑ÈÖçÁΩÆÂå∫			  
+//SDIOÊó∂ÈíüËÆ°ÁÆóÂÖ¨Âºè:SDIO_CKÊó∂Èíü=SDIOCLK/[clkdiv+2];ÂÖ∂‰∏≠,SDIOCLK‰∏ÄËà¨‰∏∫72Mhz
+//‰ΩøÁî®DMAÊ®°ÂºèÁöÑÊó∂ÂÄô,‰º†ËæìÈÄüÁéáÂèØ‰ª•Âà∞24Mhz,‰∏çËøáÂ¶ÇÊûú‰Ω†ÁöÑÂç°‰∏çÊòØÈ´òÈÄüÂç°,ÂèØËÉΩ‰πü‰ºöÂá∫Èîô
+//Âá∫ÈîôÂ∞±ËØ∑Èôç‰ΩéÊó∂Èíü,‰ΩøÁî®Êü•ËØ¢Ê®°ÂºèÁöÑËØù,Êé®ËçêSDIO_TRANSFER_CLK_DIVËÆæÁΩÆ‰∏∫3ÊàñËÄÖÊõ¥Â§ß
+#define SDIO_INIT_CLK_DIV        0xB2 		//SDIOÂàùÂßãÂåñÈ¢ëÁéáÔºåÊúÄÂ§ß400Kh  
+#define SDIO_TRANSFER_CLK_DIV    0x04		//SDIO‰º†ËæìÈ¢ëÁéá,ËØ•ÂÄºÂ§™Â∞èÂèØËÉΩ‰ºöÂØºËá¥ËØªÂÜôÊñá‰ª∂Âá∫Èîô 
+//SDIOÂ∑•‰ΩúÊ®°ÂºèÂÆö‰πâ,ÈÄöËøáSD_SetDeviceModeÂáΩÊï∞ËÆæÁΩÆ.
+#define SD_POLLING_MODE    	0  	//Êü•ËØ¢Ê®°Âºè,ËØ•Ê®°Âºè‰∏ã,Â¶ÇÊûúËØªÂÜôÊúâÈóÆÈ¢ò,Âª∫ËÆÆÂ¢ûÂ§ßSDIO_TRANSFER_CLK_DIVÁöÑËÆæÁΩÆ.
+#define SD_DMA_MODE    		1	//DMAÊ®°Âºè,ËØ•Ê®°Âºè‰∏ã,Â¶ÇÊûúËØªÂÜôÊúâÈóÆÈ¢ò,Âª∫ËÆÆÂ¢ûÂ§ßSDIO_TRANSFER_CLK_DIVÁöÑËÆæÁΩÆ.   
 
-static u8 CardType=SDIO_STD_CAPACITY_SD_CARD_V1_1;		//SDø®¿‡–Õ£®ƒ¨»œŒ™1.xø®£©
-static u32 CSD_Tab[4],CID_Tab[4],RCA=0;					//SDø®CSD,CID“‘º∞œ‡∂‘µÿ÷∑(RCA) ˝æ›
-static u8 DeviceMode=SD_DMA_MODE;		   				//π§◊˜ƒ£ Ω,◊¢“‚,π§◊˜ƒ£ Ω±ÿ–ÎÕ®π˝SD_SetDeviceMode,∫Û≤≈À„ ˝.’‚¿Ô÷ª «∂®“Â“ª∏ˆƒ¨»œµƒƒ£ Ω(SD_DMA_MODE)
-static u8 StopCondition=0; 								// «∑Ò∑¢ÀÕÕ£÷π¥´ ‰±Í÷æŒª,DMA∂‡øÈ∂¡–¥µƒ ±∫Ú”√µΩ  
-volatile GRSdio::SdErr TransferError=GRSdio::SD_OK;					// ˝æ›¥´ ‰¥ÌŒÛ±Í÷æ,DMA∂¡–¥ ± π”√	    
-volatile u8 TransferEnd=0;								//¥´ ‰Ω· ¯±Í÷æ,DMA∂¡–¥ ± π”√
+static u8 CardType=SDIO_STD_CAPACITY_SD_CARD_V1_1;		//SDÂç°Á±ªÂûãÔºàÈªòËÆ§‰∏∫1.xÂç°Ôºâ
+static u32 CSD_Tab[4],CID_Tab[4],RCA=0;					//SDÂç°CSD,CID‰ª•ÂèäÁõ∏ÂØπÂú∞ÂùÄ(RCA)Êï∞ÊçÆ
+static u8 DeviceMode=SD_DMA_MODE;		   				//Â∑•‰ΩúÊ®°Âºè,Ê≥®ÊÑè,Â∑•‰ΩúÊ®°ÂºèÂøÖÈ°ªÈÄöËøáSD_SetDeviceMode,ÂêéÊâçÁÆóÊï∞.ËøôÈáåÂè™ÊòØÂÆö‰πâ‰∏Ä‰∏™ÈªòËÆ§ÁöÑÊ®°Âºè(SD_DMA_MODE)
+static u8 StopCondition=0; 								//ÊòØÂê¶ÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊ†áÂøó‰Ωç,DMAÂ§öÂùóËØªÂÜôÁöÑÊó∂ÂÄôÁî®Âà∞  
+volatile GRSdio::SdErr TransferError=GRSdio::SD_OK;					//Êï∞ÊçÆ‰º†ËæìÈîôËØØÊ†áÂøó,DMAËØªÂÜôÊó∂‰ΩøÁî®	    
+volatile u8 TransferEnd=0;								//‰º†ËæìÁªìÊùüÊ†áÂøó,DMAËØªÂÜôÊó∂‰ΩøÁî®
 
 #pragma pack(4)
 u8 SDIO_DATA_BUFFER[512];
@@ -213,19 +215,19 @@ GRSdio::SdErr GRSdio::init()
 {
 	u8 clkdiv=0;
 	SdErr errorstatus=SD_OK;	   
-	//SDIO IOø⁄≥ı ºªØ
+	//SDIO IOÂè£ÂàùÂßãÂåñ
 
-  RCC->AHBENR|=1<<10;    	// πƒ‹SDIO ±÷”	   	 
- 	RCC->AHBENR|=1<<1;    	// πƒ‹DMA2 ±÷”
+  RCC->AHBENR|=1<<10;    	//‰ΩøËÉΩSDIOÊó∂Èíü	   	 
+ 	RCC->AHBENR|=1<<1;    	//‰ΩøËÉΩDMA2Êó∂Èíü
 
-	RCC->APB2ENR|=1<<4;    	// πƒ‹PORTC ±÷”	   	 
-	RCC->APB2ENR|=1<<5;    	// πƒ‹PORTD ±÷”
+	RCC->APB2ENR|=1<<4;    	//‰ΩøËÉΩPORTCÊó∂Èíü	   	 
+	RCC->APB2ENR|=1<<5;    	//‰ΩøËÉΩPORTDÊó∂Èíü
 	GPIOC->CRH&=0XFFF00000; 
-	GPIOC->CRH|=0X000BBBBB;	//PC.8~12 ∏¥”√ ‰≥ˆ
+	GPIOC->CRH|=0X000BBBBB;	//PC.8~12 Â§çÁî®ËæìÂá∫
 
 	GPIOD->CRL&=0XFFFFF0FF; 
-	GPIOD->CRL|=0X00000B00;	//PD2∏¥”√ ‰≥ˆ,PD7 …œ¿≠ ‰»Î
- 	//SDIOÕ‚…Ëºƒ¥Ê∆˜…Ë÷√Œ™ƒ¨»œ÷µ 			   
+	GPIOD->CRL|=0X00000B00;	//PD2Â§çÁî®ËæìÂá∫,PD7 ‰∏äÊãâËæìÂÖ•
+ 	//SDIOÂ§ñËÆæÂØÑÂ≠òÂô®ËÆæÁΩÆ‰∏∫ÈªòËÆ§ÂÄº 			   
 	SDIO->POWER=0x00000000;
 	SDIO->CLKCR=0x00000000;
 	SDIO->ARG=0x00000000;
@@ -235,21 +237,21 @@ GRSdio::SdErr GRSdio::init()
 	SDIO->DCTRL=0x00000000;
 	SDIO->ICR=0x00C007FF;
 	SDIO->MASK=0x00000000;	  
- 	GRCore::NvicInit(0,0,SDIO_IRQn,2);		//SDIO÷–∂œ≈‰÷√
-   	errorstatus=power_on();			//SDø®…œµÁ
- 	if(errorstatus==SD_OK)errorstatus=init_card();			//≥ı ºªØSDø®														  
-  	if(errorstatus==SD_OK)errorstatus=get_card_info(&cardInfo);	//ªÒ»°ø®–≈œ¢
- 	if(errorstatus==SD_OK)errorstatus=select_deselect((u32)(cardInfo.RCA<<16));//—°÷–SDø®   
-   	if(errorstatus==SD_OK)errorstatus=enable_wide_bus_operation(1);	//4ŒªøÌ∂»,»Áπ˚ «MMCø®,‘Ú≤ªƒ‹”√4Œªƒ£ Ω 
+ 	GRCore::NvicInit(0,0,SDIO_IRQn,2);		//SDIO‰∏≠Êñ≠ÈÖçÁΩÆ
+   	errorstatus=power_on();			//SDÂç°‰∏äÁîµ
+ 	if(errorstatus==SD_OK)errorstatus=init_card();			//ÂàùÂßãÂåñSDÂç°														  
+  	if(errorstatus==SD_OK)errorstatus=get_card_info(&cardInfo);	//Ëé∑ÂèñÂç°‰ø°ÊÅØ
+ 	if(errorstatus==SD_OK)errorstatus=select_deselect((u32)(cardInfo.RCA<<16));//ÈÄâ‰∏≠SDÂç°   
+   	if(errorstatus==SD_OK)errorstatus=enable_wide_bus_operation(1);	//4‰ΩçÂÆΩÂ∫¶,Â¶ÇÊûúÊòØMMCÂç°,Âàô‰∏çËÉΩÁî®4‰ΩçÊ®°Âºè 
   	if((errorstatus==SD_OK)||(SDIO_MULTIMEDIA_CARD==CardType))
 	{  		    
 		if(cardInfo.CardType==SDIO_STD_CAPACITY_SD_CARD_V1_1||cardInfo.CardType==SDIO_STD_CAPACITY_SD_CARD_V2_0)
 		{
-			clkdiv=SDIO_TRANSFER_CLK_DIV+6;	//V1.1/V2.0ø®£¨…Ë÷√◊Ó∏ﬂ72/12=6Mhz
-		}else clkdiv=SDIO_TRANSFER_CLK_DIV;	//SDHCµ»∆‰À˚ø®£¨…Ë÷√◊Ó∏ﬂ72/6=12Mhz
-		clk_set(clkdiv);				//…Ë÷√ ±÷”∆µ¬ ,SDIO ±÷”º∆À„π´ Ω:SDIO_CK ±÷”=SDIOCLK/[clkdiv+2];∆‰÷–,SDIOCLKπÃ∂®Œ™48Mhz 
-		//errorstatus=SD_SetDeviceMode(SD_DMA_MODE);	//…Ë÷√Œ™DMAƒ£ Ω
-		errorstatus=set_device_mode(SD_POLLING_MODE);	//…Ë÷√Œ™≤È—Øƒ£ Ω
+			clkdiv=SDIO_TRANSFER_CLK_DIV+6;	//V1.1/V2.0Âç°ÔºåËÆæÁΩÆÊúÄÈ´ò72/12=6Mhz
+		}else clkdiv=SDIO_TRANSFER_CLK_DIV;	//SDHCÁ≠âÂÖ∂‰ªñÂç°ÔºåËÆæÁΩÆÊúÄÈ´ò72/6=12Mhz
+		clk_set(clkdiv);				//ËÆæÁΩÆÊó∂ÈíüÈ¢ëÁéá,SDIOÊó∂ÈíüËÆ°ÁÆóÂÖ¨Âºè:SDIO_CKÊó∂Èíü=SDIOCLK/[clkdiv+2];ÂÖ∂‰∏≠,SDIOCLKÂõ∫ÂÆö‰∏∫48Mhz 
+		//errorstatus=SD_SetDeviceMode(SD_DMA_MODE);	//ËÆæÁΩÆ‰∏∫DMAÊ®°Âºè
+		errorstatus=set_device_mode(SD_POLLING_MODE);	//ËÆæÁΩÆ‰∏∫Êü•ËØ¢Ê®°Âºè
  	}
 	return errorstatus;		
 }
@@ -264,14 +266,14 @@ u8 GRSdio::readDisk(u8*buf,u32 sector,u8 cnt)
 	{
 	 	for(n=0;n<cnt;n++)
 		{
-		 	sta=read_block(SDIO_DATA_BUFFER,lsector+512*n,512);//µ•∏ˆsectorµƒ∂¡≤Ÿ◊˜
+		 	sta=read_block(SDIO_DATA_BUFFER,lsector+512*n,512);//Âçï‰∏™sectorÁöÑËØªÊìç‰Ωú
 			memcpy(buf,SDIO_DATA_BUFFER,512);
 			buf+=512;
 		} 
 	}else
 	{
-		if(cnt==1)sta=read_block(buf,lsector,512);    	//µ•∏ˆsectorµƒ∂¡≤Ÿ◊˜
-		else sta=read_multi_block(buf,lsector,512,cnt);//∂‡∏ˆsector  
+		if(cnt==1)sta=read_block(buf,lsector,512);    	//Âçï‰∏™sectorÁöÑËØªÊìç‰Ωú
+		else sta=read_multi_block(buf,lsector,512,cnt);//Â§ö‰∏™sector  
 	}
 	return sta;
 }
@@ -287,13 +289,13 @@ u8 GRSdio::writeDisk(u8*buf,u32 sector,u8 cnt)
 	 	for(n=0;n<cnt;n++)
 		{
 			memcpy(SDIO_DATA_BUFFER,buf,512);
-		 	sta=write_block(SDIO_DATA_BUFFER,lsector+512*n,512);//µ•∏ˆsectorµƒ–¥≤Ÿ◊˜
+		 	sta=write_block(SDIO_DATA_BUFFER,lsector+512*n,512);//Âçï‰∏™sectorÁöÑÂÜôÊìç‰Ωú
 			buf+=512;
 		} 
 	}else
 	{
-		if(cnt==1)sta=write_block(buf,lsector,512);    	//µ•∏ˆsectorµƒ–¥≤Ÿ◊˜
-		else sta=write_multi_block(buf,lsector,512,cnt);	//∂‡∏ˆsector
+		if(cnt==1)sta=write_block(buf,lsector,512);    	//Âçï‰∏™sectorÁöÑÂÜôÊìç‰Ωú
+		else sta=write_multi_block(buf,lsector,512,cnt);	//Â§ö‰∏™sector
 	}
 	return sta;
 }
@@ -311,11 +313,11 @@ void GRSdio::send_cmd(u8 cmdindex,u8 waitrsp,u32 arg)
 	u32 tmpreg;
 	SDIO->ARG=arg;
 	tmpreg=SDIO->CMD; 
-	tmpreg&=0XFFFFF800;		//«Â≥˝index∫Õwaitrsp
-	tmpreg|=cmdindex&0X3F;	//…Ë÷√–¬µƒindex			 
-	tmpreg|=waitrsp<<6;		//…Ë÷√–¬µƒwait rsp 
-	tmpreg|=0<<8;			//Œﬁµ»¥˝
-  tmpreg|=1<<10;			//√¸¡ÓÕ®µ¿◊¥Ã¨ª˙ πƒ‹
+	tmpreg&=0XFFFFF800;		//Ê∏ÖÈô§indexÂíåwaitrsp
+	tmpreg|=cmdindex&0X3F;	//ËÆæÁΩÆÊñ∞ÁöÑindex			 
+	tmpreg|=waitrsp<<6;		//ËÆæÁΩÆÊñ∞ÁöÑwait rsp 
+	tmpreg|=0<<8;			//Êó†Á≠âÂæÖ
+  tmpreg|=1<<10;			//ÂëΩ‰ª§ÈÄöÈÅìÁä∂ÊÄÅÊú∫‰ΩøËÉΩ
 	SDIO->CMD=tmpreg;
 }
 
@@ -323,13 +325,13 @@ void GRSdio::send_data_cfg(u32 datatimeout,u32 datalen,u8 blksize,u8 dir)
 {
 	u32 tmpreg;
 	SDIO->DTIMER=datatimeout;
-  SDIO->DLEN=datalen&0X1FFFFFF;	//µÕ25Œª”––ß
+  SDIO->DLEN=datalen&0X1FFFFFF;	//‰Ωé25‰ΩçÊúâÊïà
 	tmpreg=SDIO->DCTRL; 
-	tmpreg&=0xFFFFFF08;		//«Â≥˝÷Æ«∞µƒ…Ë÷√.
-	tmpreg|=blksize<<4;		//…Ë÷√øÈ¥Û–°
-	tmpreg|=0<<2;			//øÈ ˝æ›¥´ ‰
-	tmpreg|=(dir&0X01)<<1;	//∑ΩœÚøÿ÷∆
-	tmpreg|=1<<0;			// ˝æ›¥´ ‰ πƒ‹,DPSM◊¥Ã¨ª˙
+	tmpreg&=0xFFFFFF08;		//Ê∏ÖÈô§‰πãÂâçÁöÑËÆæÁΩÆ.
+	tmpreg|=blksize<<4;		//ËÆæÁΩÆÂùóÂ§ßÂ∞è
+	tmpreg|=0<<2;			//ÂùóÊï∞ÊçÆ‰º†Ëæì
+	tmpreg|=(dir&0X01)<<1;	//ÊñπÂêëÊéßÂà∂
+	tmpreg|=1<<0;			//Êï∞ÊçÆ‰º†Ëæì‰ΩøËÉΩ,DPSMÁä∂ÊÄÅÊú∫
 	SDIO->DCTRL=tmpreg;		
 }
 
@@ -339,48 +341,48 @@ GRSdio::SdErr GRSdio::power_on()
 	SdErr errorstatus=SD_OK;
 	u32 response=0,count=0,validvoltage=0;
 	u32 SDType=SD_STD_CAPACITY;
-	//≈‰÷√CLKCRºƒ¥Ê∆˜ 
-	SDIO->CLKCR=0;				//«Âø’CLKCR÷Æ«∞µƒ…Ë÷√
-	SDIO->CLKCR|=0<<9;			//∑« °µÁƒ£ Ω
-	SDIO->CLKCR|=0<<10;			//πÿ±’≈‘¬∑,CK∏˘æ›∑÷∆µ…Ë÷√ ‰≥ˆ
-	SDIO->CLKCR|=0<<11;			//1Œª ˝æ›øÌ∂»
-	SDIO->CLKCR|=0<<13;			//SDIOCLK…œ…˝—ÿ≤˙…˙SDIOCK
-	SDIO->CLKCR|=0<<14;			//πÿ±’”≤º˛¡˜øÿ÷∆    
-	clk_set(SDIO_INIT_CLK_DIV);//…Ë÷√ ±÷”∆µ¬ (≥ı ºªØµƒ ±∫Ú,≤ªƒ‹≥¨π˝400Khz)			 
- 	SDIO->POWER=0X03;			//…œµÁ◊¥Ã¨,ø™∆Ùø® ±÷”    
-  	SDIO->CLKCR|=1<<8;			//SDIOCK πƒ‹   
+	//ÈÖçÁΩÆCLKCRÂØÑÂ≠òÂô® 
+	SDIO->CLKCR=0;				//Ê∏ÖÁ©∫CLKCR‰πãÂâçÁöÑËÆæÁΩÆ
+	SDIO->CLKCR|=0<<9;			//ÈùûÁúÅÁîµÊ®°Âºè
+	SDIO->CLKCR|=0<<10;			//ÂÖ≥Èó≠ÊóÅË∑Ø,CKÊ†πÊçÆÂàÜÈ¢ëËÆæÁΩÆËæìÂá∫
+	SDIO->CLKCR|=0<<11;			//1‰ΩçÊï∞ÊçÆÂÆΩÂ∫¶
+	SDIO->CLKCR|=0<<13;			//SDIOCLK‰∏äÂçáÊ≤ø‰∫ßÁîüSDIOCK
+	SDIO->CLKCR|=0<<14;			//ÂÖ≥Èó≠Á°¨‰ª∂ÊµÅÊéßÂà∂    
+	clk_set(SDIO_INIT_CLK_DIV);//ËÆæÁΩÆÊó∂ÈíüÈ¢ëÁéá(ÂàùÂßãÂåñÁöÑÊó∂ÂÄô,‰∏çËÉΩË∂ÖËøá400Khz)			 
+ 	SDIO->POWER=0X03;			//‰∏äÁîµÁä∂ÊÄÅ,ÂºÄÂêØÂç°Êó∂Èíü    
+  	SDIO->CLKCR|=1<<8;			//SDIOCK‰ΩøËÉΩ   
    	for(i=0;i<74;i++)
 	{
-		send_cmd(SD_CMD_GO_IDLE_STATE,0,0);//∑¢ÀÕCMD0Ω¯»ÎIDLE STAGEƒ£ Ω√¸¡Ó.												  
+		send_cmd(SD_CMD_GO_IDLE_STATE,0,0);//ÂèëÈÄÅCMD0ËøõÂÖ•IDLE STAGEÊ®°ÂºèÂëΩ‰ª§.												  
 		errorstatus=cmd_error();
 		if(errorstatus==SD_OK)break;
  	}
- 	if(errorstatus)return errorstatus;//∑µªÿ¥ÌŒÛ◊¥Ã¨
-	send_cmd(SDIO_SEND_IF_COND,1,SD_CHECK_PATTERN);//∑¢ÀÕCMD8,∂ÃœÏ”¶,ºÏ≤ÈSDø®Ω”ø⁄Ãÿ–‘.
- 														//arg[11:8]:01,÷ß≥÷µÁ—π∑∂Œß,2.7~3.6V
-														//arg[7:0]:ƒ¨»œ0XAA
-														//∑µªÿœÏ”¶7
-  	errorstatus=cmd_res7_error();						//µ»¥˝R7œÏ”¶
- 	if(errorstatus==SD_OK) 								//R7œÏ”¶’˝≥£
+ 	if(errorstatus)return errorstatus;//ËøîÂõûÈîôËØØÁä∂ÊÄÅ
+	send_cmd(SDIO_SEND_IF_COND,1,SD_CHECK_PATTERN);//ÂèëÈÄÅCMD8,Áü≠ÂìçÂ∫î,Ê£ÄÊü•SDÂç°Êé•Âè£ÁâπÊÄß.
+ 														//arg[11:8]:01,ÊîØÊåÅÁîµÂéãËåÉÂõ¥,2.7~3.6V
+														//arg[7:0]:ÈªòËÆ§0XAA
+														//ËøîÂõûÂìçÂ∫î7
+  	errorstatus=cmd_res7_error();						//Á≠âÂæÖR7ÂìçÂ∫î
+ 	if(errorstatus==SD_OK) 								//R7ÂìçÂ∫îÊ≠£Â∏∏
 	{
-		CardType=SDIO_STD_CAPACITY_SD_CARD_V2_0;		//SD 2.0ø®
-		SDType=SD_HIGH_CAPACITY;			   			//∏ﬂ»›¡øø®
+		CardType=SDIO_STD_CAPACITY_SD_CARD_V2_0;		//SD 2.0Âç°
+		SDType=SD_HIGH_CAPACITY;			   			//È´òÂÆπÈáèÂç°
 	}
-	send_cmd(SD_CMD_APP_CMD,1,0);					//∑¢ÀÕCMD55,∂ÃœÏ”¶	 
-	errorstatus=cmd_res1_error(SD_CMD_APP_CMD); 		 	//µ»¥˝R1œÏ”¶   
-	if(errorstatus==SD_OK)//SD2.0/SD 1.1,∑Ò‘ÚŒ™MMCø®
+	send_cmd(SD_CMD_APP_CMD,1,0);					//ÂèëÈÄÅCMD55,Áü≠ÂìçÂ∫î	 
+	errorstatus=cmd_res1_error(SD_CMD_APP_CMD); 		 	//Á≠âÂæÖR1ÂìçÂ∫î   
+	if(errorstatus==SD_OK)//SD2.0/SD 1.1,Âê¶Âàô‰∏∫MMCÂç°
 	{																  
-		//SDø®,∑¢ÀÕACMD41 SD_APP_OP_COND,≤Œ ˝Œ™:0x80100000 
+		//SDÂç°,ÂèëÈÄÅACMD41 SD_APP_OP_COND,ÂèÇÊï∞‰∏∫:0x80100000 
 		while((!validvoltage)&&(count<SD_MAX_VOLT_TRIAL))
 		{	   										   
-			send_cmd(SD_CMD_APP_CMD,1,0);				//∑¢ÀÕCMD55,∂ÃœÏ”¶	 
-			errorstatus=cmd_res1_error(SD_CMD_APP_CMD); 	 	//µ»¥˝R1œÏ”¶   
- 			if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ
-			send_cmd(SD_CMD_SD_APP_OP_COND,1,SD_VOLTAGE_WINDOW_SD|SDType);//∑¢ÀÕACMD41,∂ÃœÏ”¶	 
-			errorstatus=cmd_res3_error(); 					//µ»¥˝R3œÏ”¶   
- 			if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ  
-			response=SDIO->RESP1;;			   				//µ√µΩœÏ”¶
-			validvoltage=(((response>>31)==1)?1:0);			//≈–∂œSDø®…œµÁ «∑ÒÕÍ≥…
+			send_cmd(SD_CMD_APP_CMD,1,0);				//ÂèëÈÄÅCMD55,Áü≠ÂìçÂ∫î	 
+			errorstatus=cmd_res1_error(SD_CMD_APP_CMD); 	 	//Á≠âÂæÖR1ÂìçÂ∫î   
+ 			if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ
+			send_cmd(SD_CMD_SD_APP_OP_COND,1,SD_VOLTAGE_WINDOW_SD|SDType);//ÂèëÈÄÅACMD41,Áü≠ÂìçÂ∫î	 
+			errorstatus=cmd_res3_error(); 					//Á≠âÂæÖR3ÂìçÂ∫î   
+ 			if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ  
+			response=SDIO->RESP1;;			   				//ÂæóÂà∞ÂìçÂ∫î
+			validvoltage=(((response>>31)==1)?1:0);			//Âà§Êñ≠SDÂç°‰∏äÁîµÊòØÂê¶ÂÆåÊàê
 			count++;
 		}
 		if(count>=SD_MAX_VOLT_TRIAL)
@@ -392,15 +394,15 @@ GRSdio::SdErr GRSdio::power_on()
 		{
 			CardType=SDIO_HIGH_CAPACITY_SD_CARD;
 		}
- 	}else//MMCø®
+ 	}else//MMCÂç°
 	{
-		//MMCø®,∑¢ÀÕCMD1 SDIO_SEND_OP_COND,≤Œ ˝Œ™:0x80FF8000 
+		//MMCÂç°,ÂèëÈÄÅCMD1 SDIO_SEND_OP_COND,ÂèÇÊï∞‰∏∫:0x80FF8000 
 		while((!validvoltage)&&(count<SD_MAX_VOLT_TRIAL))
 		{	   										   				   
-			send_cmd(SD_CMD_SEND_OP_COND,1,SD_VOLTAGE_WINDOW_MMC);//∑¢ÀÕCMD1,∂ÃœÏ”¶	 
-			errorstatus=cmd_res3_error(); 					//µ»¥˝R3œÏ”¶   
- 			if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ  
-			response=SDIO->RESP1;;			   				//µ√µΩœÏ”¶
+			send_cmd(SD_CMD_SEND_OP_COND,1,SD_VOLTAGE_WINDOW_MMC);//ÂèëÈÄÅCMD1,Áü≠ÂìçÂ∫î	 
+			errorstatus=cmd_res3_error(); 					//Á≠âÂæÖR3ÂìçÂ∫î   
+ 			if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ  
+			response=SDIO->RESP1;;			   				//ÂæóÂà∞ÂìçÂ∫î
 			validvoltage=(((response>>31)==1)?1:0);
 			count++;
 		}
@@ -416,7 +418,7 @@ GRSdio::SdErr GRSdio::power_on()
 
 GRSdio::SdErr GRSdio::power_off()
 {
-  SDIO->POWER&=~(3<<0);//SDIOµÁ‘¥πÿ±’, ±÷”Õ£÷π	
+  SDIO->POWER&=~(3<<0);//SDIOÁîµÊ∫êÂÖ≥Èó≠,Êó∂ÈíüÂÅúÊ≠¢	
 	return SD_OK;		 
 }
 
@@ -424,158 +426,158 @@ GRSdio::SdErr GRSdio::init_card()
 {
  	SdErr errorstatus=SD_OK;
 	u16 rca = 0x01;
- 	if((SDIO->POWER&0X03)==0)return SD_REQUEST_NOT_APPLICABLE;//ºÏ≤ÈµÁ‘¥◊¥Ã¨,»∑±£Œ™…œµÁ◊¥Ã¨
- 	if(SDIO_SECURE_DIGITAL_IO_CARD!=CardType)			//∑«SECURE_DIGITAL_IO_CARD
+ 	if((SDIO->POWER&0X03)==0)return SD_REQUEST_NOT_APPLICABLE;//Ê£ÄÊü•ÁîµÊ∫êÁä∂ÊÄÅ,Á°Æ‰øù‰∏∫‰∏äÁîµÁä∂ÊÄÅ
+ 	if(SDIO_SECURE_DIGITAL_IO_CARD!=CardType)			//ÈùûSECURE_DIGITAL_IO_CARD
 	{
-		send_cmd(SD_CMD_ALL_SEND_CID,3,0);			//∑¢ÀÕCMD2,»°µ√CID,≥§œÏ”¶	 
-		errorstatus=cmd_res2_error(); 					//µ»¥˝R2œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ		    
+		send_cmd(SD_CMD_ALL_SEND_CID,3,0);			//ÂèëÈÄÅCMD2,ÂèñÂæóCID,ÈïøÂìçÂ∫î	 
+		errorstatus=cmd_res2_error(); 					//Á≠âÂæÖR2ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ		    
  		CID_Tab[0]=SDIO->RESP1;
 		CID_Tab[1]=SDIO->RESP2;
 		CID_Tab[2]=SDIO->RESP3;
 		CID_Tab[3]=SDIO->RESP4;
 	}
-	if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_SECURE_DIGITAL_IO_COMBO_CARD==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))//≈–∂œø®¿‡–Õ
+	if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_SECURE_DIGITAL_IO_COMBO_CARD==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))//Âà§Êñ≠Âç°Á±ªÂûã
 	{
-		send_cmd(SD_CMD_SET_REL_ADDR,1,0);			//∑¢ÀÕCMD3,∂ÃœÏ”¶ 
-		errorstatus=cmd_res6_error(SD_CMD_SET_REL_ADDR,&rca);//µ»¥˝R6œÏ”¶ 
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ		    
+		send_cmd(SD_CMD_SET_REL_ADDR,1,0);			//ÂèëÈÄÅCMD3,Áü≠ÂìçÂ∫î 
+		errorstatus=cmd_res6_error(SD_CMD_SET_REL_ADDR,&rca);//Á≠âÂæÖR6ÂìçÂ∫î 
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ		    
 	}   
     if (SDIO_MULTIMEDIA_CARD==CardType)
     {
- 		send_cmd(SD_CMD_SET_REL_ADDR,1,(u32)(rca<<16));//∑¢ÀÕCMD3,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res2_error(); 					//µ»¥˝R2œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	 
+ 		send_cmd(SD_CMD_SET_REL_ADDR,1,(u32)(rca<<16));//ÂèëÈÄÅCMD3,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res2_error(); 					//Á≠âÂæÖR2ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	 
     }
-	if (SDIO_SECURE_DIGITAL_IO_CARD!=CardType)			//∑«SECURE_DIGITAL_IO_CARD
+	if (SDIO_SECURE_DIGITAL_IO_CARD!=CardType)			//ÈùûSECURE_DIGITAL_IO_CARD
 	{
 		RCA = rca;
-		send_cmd(SD_CMD_SEND_CSD,3,(u32)(rca<<16));//∑¢ÀÕCMD9+ø®RCA,»°µ√CSD,≥§œÏ”¶ 	   
-		errorstatus=cmd_res2_error(); 					//µ»¥˝R2œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ		    
+		send_cmd(SD_CMD_SEND_CSD,3,(u32)(rca<<16));//ÂèëÈÄÅCMD9+Âç°RCA,ÂèñÂæóCSD,ÈïøÂìçÂ∫î 	   
+		errorstatus=cmd_res2_error(); 					//Á≠âÂæÖR2ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ		    
   		CSD_Tab[0]=SDIO->RESP1;
 		CSD_Tab[1]=SDIO->RESP2;
 		CSD_Tab[2]=SDIO->RESP3;						
 		CSD_Tab[3]=SDIO->RESP4;					    
 	}
-	return SD_OK;//ø®≥ı ºªØ≥…π¶
+	return SD_OK;//Âç°ÂàùÂßãÂåñÊàêÂäü
 }
 
 GRSdio::SdErr GRSdio::get_card_info(GRSdio::SdInfo* cardinfo)
 {
  	SdErr errorstatus=SD_OK;
 	u8 tmp=0;	   
-	cardinfo->CardType=(u8)CardType; 				//ø®¿‡–Õ
-	cardinfo->RCA=(u16)RCA;							//ø®RCA÷µ
+	cardinfo->CardType=(u8)CardType; 				//Âç°Á±ªÂûã
+	cardinfo->RCA=(u16)RCA;							//Âç°RCAÂÄº
 	tmp=(u8)((CSD_Tab[0]&0xFF000000)>>24);
-	cardinfo->SD_csd.CSDStruct=(tmp&0xC0)>>6;		//CSDΩ·ππ
-	cardinfo->SD_csd.SysSpecVersion=(tmp&0x3C)>>2;	//2.0–≠“Èªπ√ª∂®“Â’‚≤ø∑÷(Œ™±£¡Ù),”¶∏√ «∫Û–¯–≠“È∂®“Âµƒ
-	cardinfo->SD_csd.Reserved1=tmp&0x03;			//2∏ˆ±£¡ÙŒª  
-	tmp=(u8)((CSD_Tab[0]&0x00FF0000)>>16);			//µ⁄1∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.TAAC=tmp;				   		// ˝æ›∂¡ ±º‰1
-	tmp=(u8)((CSD_Tab[0]&0x0000FF00)>>8);	  		//µ⁄2∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.NSAC=tmp;		  				// ˝æ›∂¡ ±º‰2
-	tmp=(u8)(CSD_Tab[0]&0x000000FF);				//µ⁄3∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.MaxBusClkFrec=tmp;		  		//¥´ ‰ÀŸ∂»	   
-	tmp=(u8)((CSD_Tab[1]&0xFF000000)>>24);			//µ⁄4∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.CardComdClasses=tmp<<4;    	//ø®÷∏¡Ó¿‡∏ﬂÀƒŒª
-	tmp=(u8)((CSD_Tab[1]&0x00FF0000)>>16);	 		//µ⁄5∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.CardComdClasses|=(tmp&0xF0)>>4;//ø®÷∏¡Ó¿‡µÕÀƒŒª
-	cardinfo->SD_csd.RdBlockLen=tmp&0x0F;	    	//◊Ó¥Û∂¡»° ˝æ›≥§∂»
-	tmp=(u8)((CSD_Tab[1]&0x0000FF00)>>8);			//µ⁄6∏ˆ◊÷Ω⁄
-	cardinfo->SD_csd.PartBlockRead=(tmp&0x80)>>7;	//‘ –Ì∑÷øÈ∂¡
-	cardinfo->SD_csd.WrBlockMisalign=(tmp&0x40)>>6;	//–¥øÈ¥ÌŒª
-	cardinfo->SD_csd.RdBlockMisalign=(tmp&0x20)>>5;	//∂¡øÈ¥ÌŒª
+	cardinfo->SD_csd.CSDStruct=(tmp&0xC0)>>6;		//CSDÁªìÊûÑ
+	cardinfo->SD_csd.SysSpecVersion=(tmp&0x3C)>>2;	//2.0ÂçèËÆÆËøòÊ≤°ÂÆö‰πâËøôÈÉ®ÂàÜ(‰∏∫‰øùÁïô),Â∫îËØ•ÊòØÂêéÁª≠ÂçèËÆÆÂÆö‰πâÁöÑ
+	cardinfo->SD_csd.Reserved1=tmp&0x03;			//2‰∏™‰øùÁïô‰Ωç  
+	tmp=(u8)((CSD_Tab[0]&0x00FF0000)>>16);			//Á¨¨1‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.TAAC=tmp;				   		//Êï∞ÊçÆËØªÊó∂Èó¥1
+	tmp=(u8)((CSD_Tab[0]&0x0000FF00)>>8);	  		//Á¨¨2‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.NSAC=tmp;		  				//Êï∞ÊçÆËØªÊó∂Èó¥2
+	tmp=(u8)(CSD_Tab[0]&0x000000FF);				//Á¨¨3‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.MaxBusClkFrec=tmp;		  		//‰º†ËæìÈÄüÂ∫¶	   
+	tmp=(u8)((CSD_Tab[1]&0xFF000000)>>24);			//Á¨¨4‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.CardComdClasses=tmp<<4;    	//Âç°Êåá‰ª§Á±ªÈ´òÂõõ‰Ωç
+	tmp=(u8)((CSD_Tab[1]&0x00FF0000)>>16);	 		//Á¨¨5‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.CardComdClasses|=(tmp&0xF0)>>4;//Âç°Êåá‰ª§Á±ª‰ΩéÂõõ‰Ωç
+	cardinfo->SD_csd.RdBlockLen=tmp&0x0F;	    	//ÊúÄÂ§ßËØªÂèñÊï∞ÊçÆÈïøÂ∫¶
+	tmp=(u8)((CSD_Tab[1]&0x0000FF00)>>8);			//Á¨¨6‰∏™Â≠óËäÇ
+	cardinfo->SD_csd.PartBlockRead=(tmp&0x80)>>7;	//ÂÖÅËÆ∏ÂàÜÂùóËØª
+	cardinfo->SD_csd.WrBlockMisalign=(tmp&0x40)>>6;	//ÂÜôÂùóÈîô‰Ωç
+	cardinfo->SD_csd.RdBlockMisalign=(tmp&0x20)>>5;	//ËØªÂùóÈîô‰Ωç
 	cardinfo->SD_csd.DSRImpl=(tmp&0x10)>>4;
-	cardinfo->SD_csd.Reserved2=0; 					//±£¡Ù
- 	if((CardType==SDIO_STD_CAPACITY_SD_CARD_V1_1)||(CardType==SDIO_STD_CAPACITY_SD_CARD_V2_0)||(SDIO_MULTIMEDIA_CARD==CardType))//±Í◊º1.1/2.0ø®/MMCø®
+	cardinfo->SD_csd.Reserved2=0; 					//‰øùÁïô
+ 	if((CardType==SDIO_STD_CAPACITY_SD_CARD_V1_1)||(CardType==SDIO_STD_CAPACITY_SD_CARD_V2_0)||(SDIO_MULTIMEDIA_CARD==CardType))//Ê†áÂáÜ1.1/2.0Âç°/MMCÂç°
 	{
-		cardinfo->SD_csd.DeviceSize=(tmp&0x03)<<10;	//C_SIZE(12Œª)
-	 	tmp=(u8)(CSD_Tab[1]&0x000000FF); 			//µ⁄7∏ˆ◊÷Ω⁄	
+		cardinfo->SD_csd.DeviceSize=(tmp&0x03)<<10;	//C_SIZE(12‰Ωç)
+	 	tmp=(u8)(CSD_Tab[1]&0x000000FF); 			//Á¨¨7‰∏™Â≠óËäÇ	
 		cardinfo->SD_csd.DeviceSize|=(tmp)<<2;
- 		tmp=(u8)((CSD_Tab[2]&0xFF000000)>>24);		//µ⁄8∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)((CSD_Tab[2]&0xFF000000)>>24);		//Á¨¨8‰∏™Â≠óËäÇ	
 		cardinfo->SD_csd.DeviceSize|=(tmp&0xC0)>>6;
  		cardinfo->SD_csd.MaxRdCurrentVDDMin=(tmp&0x38)>>3;
 		cardinfo->SD_csd.MaxRdCurrentVDDMax=(tmp&0x07);
- 		tmp=(u8)((CSD_Tab[2]&0x00FF0000)>>16);		//µ⁄9∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)((CSD_Tab[2]&0x00FF0000)>>16);		//Á¨¨9‰∏™Â≠óËäÇ	
 		cardinfo->SD_csd.MaxWrCurrentVDDMin=(tmp&0xE0)>>5;
 		cardinfo->SD_csd.MaxWrCurrentVDDMax=(tmp&0x1C)>>2;
 		cardinfo->SD_csd.DeviceSizeMul=(tmp&0x03)<<1;//C_SIZE_MULT
- 		tmp=(u8)((CSD_Tab[2]&0x0000FF00)>>8);	  	//µ⁄10∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)((CSD_Tab[2]&0x0000FF00)>>8);	  	//Á¨¨10‰∏™Â≠óËäÇ	
 		cardinfo->SD_csd.DeviceSizeMul|=(tmp&0x80)>>7;
- 		cardinfo->CardCapacity=(cardinfo->SD_csd.DeviceSize+1);//º∆À„ø®»›¡ø
+ 		cardinfo->CardCapacity=(cardinfo->SD_csd.DeviceSize+1);//ËÆ°ÁÆóÂç°ÂÆπÈáè
 		cardinfo->CardCapacity*=(1<<(cardinfo->SD_csd.DeviceSizeMul+2));
-		cardinfo->CardBlockSize=1<<(cardinfo->SD_csd.RdBlockLen);//øÈ¥Û–°
+		cardinfo->CardBlockSize=1<<(cardinfo->SD_csd.RdBlockLen);//ÂùóÂ§ßÂ∞è
 		cardinfo->CardCapacity*=cardinfo->CardBlockSize;
-	}else if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)	//∏ﬂ»›¡øø®
+	}else if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)	//È´òÂÆπÈáèÂç°
 	{
- 		tmp=(u8)(CSD_Tab[1]&0x000000FF); 		//µ⁄7∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)(CSD_Tab[1]&0x000000FF); 		//Á¨¨7‰∏™Â≠óËäÇ	
 		cardinfo->SD_csd.DeviceSize=(tmp&0x3F)<<16;//C_SIZE
- 		tmp=(u8)((CSD_Tab[2]&0xFF000000)>>24); 	//µ⁄8∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)((CSD_Tab[2]&0xFF000000)>>24); 	//Á¨¨8‰∏™Â≠óËäÇ	
  		cardinfo->SD_csd.DeviceSize|=(tmp<<8);
- 		tmp=(u8)((CSD_Tab[2]&0x00FF0000)>>16);	//µ⁄9∏ˆ◊÷Ω⁄	
+ 		tmp=(u8)((CSD_Tab[2]&0x00FF0000)>>16);	//Á¨¨9‰∏™Â≠óËäÇ	
  		cardinfo->SD_csd.DeviceSize|=(tmp);
- 		tmp=(u8)((CSD_Tab[2]&0x0000FF00)>>8); 	//µ⁄10∏ˆ◊÷Ω⁄	
- 		cardinfo->CardCapacity=(long long)(cardinfo->SD_csd.DeviceSize+1)*512*1024;//º∆À„ø®»›¡ø
-		cardinfo->CardBlockSize=512; 			//øÈ¥Û–°πÃ∂®Œ™512◊÷Ω⁄
+ 		tmp=(u8)((CSD_Tab[2]&0x0000FF00)>>8); 	//Á¨¨10‰∏™Â≠óËäÇ	
+ 		cardinfo->CardCapacity=(long long)(cardinfo->SD_csd.DeviceSize+1)*512*1024;//ËÆ°ÁÆóÂç°ÂÆπÈáè
+		cardinfo->CardBlockSize=512; 			//ÂùóÂ§ßÂ∞èÂõ∫ÂÆö‰∏∫512Â≠óËäÇ
 	}	  
 	cardinfo->SD_csd.EraseGrSize=(tmp&0x40)>>6;
 	cardinfo->SD_csd.EraseGrMul=(tmp&0x3F)<<1;	   
-	tmp=(u8)(CSD_Tab[2]&0x000000FF);			//µ⁄11∏ˆ◊÷Ω⁄	
+	tmp=(u8)(CSD_Tab[2]&0x000000FF);			//Á¨¨11‰∏™Â≠óËäÇ	
 	cardinfo->SD_csd.EraseGrMul|=(tmp&0x80)>>7;
 	cardinfo->SD_csd.WrProtectGrSize=(tmp&0x7F);
- 	tmp=(u8)((CSD_Tab[3]&0xFF000000)>>24);		//µ⁄12∏ˆ◊÷Ω⁄	
+ 	tmp=(u8)((CSD_Tab[3]&0xFF000000)>>24);		//Á¨¨12‰∏™Â≠óËäÇ	
 	cardinfo->SD_csd.WrProtectGrEnable=(tmp&0x80)>>7;
 	cardinfo->SD_csd.ManDeflECC=(tmp&0x60)>>5;
 	cardinfo->SD_csd.WrSpeedFact=(tmp&0x1C)>>2;
 	cardinfo->SD_csd.MaxWrBlockLen=(tmp&0x03)<<2;	 
-	tmp=(u8)((CSD_Tab[3]&0x00FF0000)>>16);		//µ⁄13∏ˆ◊÷Ω⁄
+	tmp=(u8)((CSD_Tab[3]&0x00FF0000)>>16);		//Á¨¨13‰∏™Â≠óËäÇ
 	cardinfo->SD_csd.MaxWrBlockLen|=(tmp&0xC0)>>6;
 	cardinfo->SD_csd.WriteBlockPaPartial=(tmp&0x20)>>5;
 	cardinfo->SD_csd.Reserved3=0;
 	cardinfo->SD_csd.ContentProtectAppli=(tmp&0x01);  
-	tmp=(u8)((CSD_Tab[3]&0x0000FF00)>>8);		//µ⁄14∏ˆ◊÷Ω⁄
+	tmp=(u8)((CSD_Tab[3]&0x0000FF00)>>8);		//Á¨¨14‰∏™Â≠óËäÇ
 	cardinfo->SD_csd.FileFormatGrouop=(tmp&0x80)>>7;
 	cardinfo->SD_csd.CopyFlag=(tmp&0x40)>>6;
 	cardinfo->SD_csd.PermWrProtect=(tmp&0x20)>>5;
 	cardinfo->SD_csd.TempWrProtect=(tmp&0x10)>>4;
 	cardinfo->SD_csd.FileFormat=(tmp&0x0C)>>2;
 	cardinfo->SD_csd.ECC=(tmp&0x03);  
-	tmp=(u8)(CSD_Tab[3]&0x000000FF);			//µ⁄15∏ˆ◊÷Ω⁄
+	tmp=(u8)(CSD_Tab[3]&0x000000FF);			//Á¨¨15‰∏™Â≠óËäÇ
 	cardinfo->SD_csd.CSD_CRC=(tmp&0xFE)>>1;
 	cardinfo->SD_csd.Reserved4=1;		 
-	tmp=(u8)((CID_Tab[0]&0xFF000000)>>24);		//µ⁄0∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[0]&0xFF000000)>>24);		//Á¨¨0‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ManufacturerID=tmp;		    
-	tmp=(u8)((CID_Tab[0]&0x00FF0000)>>16);		//µ⁄1∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[0]&0x00FF0000)>>16);		//Á¨¨1‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.OEM_AppliID=tmp<<8;	  
-	tmp=(u8)((CID_Tab[0]&0x000000FF00)>>8);		//µ⁄2∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[0]&0x000000FF00)>>8);		//Á¨¨2‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.OEM_AppliID|=tmp;	    
-	tmp=(u8)(CID_Tab[0]&0x000000FF);			//µ⁄3∏ˆ◊÷Ω⁄	
+	tmp=(u8)(CID_Tab[0]&0x000000FF);			//Á¨¨3‰∏™Â≠óËäÇ	
 	cardinfo->SD_cid.ProdName1=tmp<<24;				  
-	tmp=(u8)((CID_Tab[1]&0xFF000000)>>24); 		//µ⁄4∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[1]&0xFF000000)>>24); 		//Á¨¨4‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdName1|=tmp<<16;	  
-	tmp=(u8)((CID_Tab[1]&0x00FF0000)>>16);	   	//µ⁄5∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[1]&0x00FF0000)>>16);	   	//Á¨¨5‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdName1|=tmp<<8;		 
-	tmp=(u8)((CID_Tab[1]&0x0000FF00)>>8);		//µ⁄6∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[1]&0x0000FF00)>>8);		//Á¨¨6‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdName1|=tmp;		   
-	tmp=(u8)(CID_Tab[1]&0x000000FF);	  		//µ⁄7∏ˆ◊÷Ω⁄
+	tmp=(u8)(CID_Tab[1]&0x000000FF);	  		//Á¨¨7‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdName2=tmp;			  
-	tmp=(u8)((CID_Tab[2]&0xFF000000)>>24); 		//µ⁄8∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[2]&0xFF000000)>>24); 		//Á¨¨8‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdRev=tmp;		 
-	tmp=(u8)((CID_Tab[2]&0x00FF0000)>>16);		//µ⁄9∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[2]&0x00FF0000)>>16);		//Á¨¨9‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdSN=tmp<<24;	   
-	tmp=(u8)((CID_Tab[2]&0x0000FF00)>>8); 		//µ⁄10∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[2]&0x0000FF00)>>8); 		//Á¨¨10‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdSN|=tmp<<16;	   
-	tmp=(u8)(CID_Tab[2]&0x000000FF);   			//µ⁄11∏ˆ◊÷Ω⁄
+	tmp=(u8)(CID_Tab[2]&0x000000FF);   			//Á¨¨11‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdSN|=tmp<<8;		   
-	tmp=(u8)((CID_Tab[3]&0xFF000000)>>24); 		//µ⁄12∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[3]&0xFF000000)>>24); 		//Á¨¨12‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ProdSN|=tmp;			     
-	tmp=(u8)((CID_Tab[3]&0x00FF0000)>>16);	 	//µ⁄13∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[3]&0x00FF0000)>>16);	 	//Á¨¨13‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.Reserved1|=(tmp&0xF0)>>4;
 	cardinfo->SD_cid.ManufactDate=(tmp&0x0F)<<8;    
-	tmp=(u8)((CID_Tab[3]&0x0000FF00)>>8);		//µ⁄14∏ˆ◊÷Ω⁄
+	tmp=(u8)((CID_Tab[3]&0x0000FF00)>>8);		//Á¨¨14‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.ManufactDate|=tmp;		 	  
-	tmp=(u8)(CID_Tab[3]&0x000000FF);			//µ⁄15∏ˆ◊÷Ω⁄
+	tmp=(u8)(CID_Tab[3]&0x000000FF);			//Á¨¨15‰∏™Â≠óËäÇ
 	cardinfo->SD_cid.CID_CRC=(tmp&0xFE)>>1;
 	cardinfo->SD_cid.Reserved2=1;	 
 	return errorstatus;
@@ -584,18 +586,18 @@ GRSdio::SdErr GRSdio::get_card_info(GRSdio::SdInfo* cardinfo)
 GRSdio::SdErr GRSdio::enable_wide_bus_operation(u32 wmode)
 {
   SdErr errorstatus=SD_OK;
- 	if(SDIO_MULTIMEDIA_CARD==CardType)return SD_UNSUPPORTED_FEATURE;//MMCø®≤ª÷ß≥÷
+ 	if(SDIO_MULTIMEDIA_CARD==CardType)return SD_UNSUPPORTED_FEATURE;//MMCÂç°‰∏çÊîØÊåÅ
  	else if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))
 	{
-		if(wmode>=2)return SD_UNSUPPORTED_FEATURE;//≤ª÷ß≥÷8Œªƒ£ Ω
+		if(wmode>=2)return SD_UNSUPPORTED_FEATURE;//‰∏çÊîØÊåÅ8‰ΩçÊ®°Âºè
  		else   
 		{
 			errorstatus=en_wide_bus(wmode);
  			if(SD_OK==errorstatus)
 			{
-				SDIO->CLKCR&=~(3<<11);		//«Â≥˝÷Æ«∞µƒŒªøÌ…Ë÷√    
-				SDIO->CLKCR|=(u16)wmode<<11;//1Œª/4Œª◊‹œﬂøÌ∂» 
-				SDIO->CLKCR|=0<<14;			//≤ªø™∆Ù”≤º˛¡˜øÿ÷∆
+				SDIO->CLKCR&=~(3<<11);		//Ê∏ÖÈô§‰πãÂâçÁöÑ‰ΩçÂÆΩËÆæÁΩÆ    
+				SDIO->CLKCR|=(u16)wmode<<11;//1‰Ωç/4‰ΩçÊÄªÁ∫øÂÆΩÂ∫¶ 
+				SDIO->CLKCR|=0<<14;			//‰∏çÂºÄÂêØÁ°¨‰ª∂ÊµÅÊéßÂà∂
 			}
 		}  
 	}
@@ -612,7 +614,7 @@ GRSdio::SdErr GRSdio::set_device_mode(u32 Mode)
 
 GRSdio::SdErr GRSdio::select_deselect(u32 addr)
 {
- 	send_cmd(SD_CMD_SEL_DESEL_CARD,1,addr);	//∑¢ÀÕCMD7,—°‘Òø®,∂ÃœÏ”¶	 	   
+ 	send_cmd(SD_CMD_SEL_DESEL_CARD,1,addr);	//ÂèëÈÄÅCMD7,ÈÄâÊã©Âç°,Áü≠ÂìçÂ∫î	 	   
    	return cmd_res1_error(SD_CMD_SEL_DESEL_CARD);	  
 }
 
@@ -624,10 +626,10 @@ GRSdio::SdErr GRSdio::send_status(unsigned int* pcardstatus)
 		errorstatus=SD_INVALID_PARAMETER;
 		return errorstatus;
 	}
- 	send_cmd(SD_CMD_SEND_STATUS,1,RCA<<16);	//∑¢ÀÕCMD13,∂ÃœÏ”¶		 
-	errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);	//≤È—ØœÏ”¶◊¥Ã¨ 
+ 	send_cmd(SD_CMD_SEND_STATUS,1,RCA<<16);	//ÂèëÈÄÅCMD13,Áü≠ÂìçÂ∫î		 
+	errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);	//Êü•ËØ¢ÂìçÂ∫îÁä∂ÊÄÅ 
 	if(errorstatus!=SD_OK)return errorstatus;
-	*pcardstatus=SDIO->RESP1;//∂¡»°œÏ”¶÷µ
+	*pcardstatus=SDIO->RESP1;//ËØªÂèñÂìçÂ∫îÂÄº
 	return errorstatus;
 }
 
@@ -642,81 +644,81 @@ GRSdio::SdErr GRSdio::read_block(u8 *buf,long long addr,u16 blksize)
 {
 	SdErr errorstatus=SD_OK;
 	u8 power;
-  u32 count=0,*tempbuff=(u32*)buf;//◊™ªªŒ™u32÷∏’Î 
+  u32 count=0,*tempbuff=(u32*)buf;//ËΩ¨Êç¢‰∏∫u32ÊåáÈíà 
 	u32 timeout=SDIO_DATATIMEOUT;   
    	if(NULL==buf)return SD_INVALID_PARAMETER; 
-   	SDIO->DCTRL=0x0;	// ˝æ›øÿ÷∆ºƒ¥Ê∆˜«Â¡„(πÿDMA)   
-	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//¥Û»›¡øø®
+   	SDIO->DCTRL=0x0;	//Êï∞ÊçÆÊéßÂà∂ÂØÑÂ≠òÂô®Ê∏ÖÈõ∂(ÂÖ≥DMA)   
+	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//Â§ßÂÆπÈáèÂç°
 	{
 		blksize=512;
 		addr>>=9;
 	}   
-  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//«Â≥˝DPSM◊¥Ã¨ª˙≈‰÷√
-	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//ø®À¯¡À
+  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//Ê∏ÖÈô§DPSMÁä∂ÊÄÅÊú∫ÈÖçÁΩÆ
+	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//Âç°ÈîÅ‰∫Ü
 	if((blksize>0)&&(blksize<=2048)&&((blksize&(blksize-1))==0))
 	{
 		power=convert_from_bytes_to_power_of_two(blksize);	    	   
-		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//∑¢ÀÕCMD16+…Ë÷√ ˝æ›≥§∂»Œ™blksize,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//µ»¥˝R1œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	 
+		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//ÂèëÈÄÅCMD16+ËÆæÁΩÆÊï∞ÊçÆÈïøÂ∫¶‰∏∫blksize,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//Á≠âÂæÖR1ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	 
 	}else return SD_INVALID_PARAMETER;	  	  									    
-  	send_data_cfg(SD_DATATIMEOUT,blksize,power,1);	//blksize,ø®µΩøÿ÷∆∆˜	  
-   	send_cmd(SD_CMD_READ_SINGLE_BLOCK,1,addr);		//∑¢ÀÕCMD17+¥”addrµÿ÷∑≥ˆ∂¡»° ˝æ›,∂ÃœÏ”¶ 	   
-	errorstatus=cmd_res1_error(SD_CMD_READ_SINGLE_BLOCK);//µ»¥˝R1œÏ”¶   
-	if(errorstatus!=SD_OK)return errorstatus;   		//œÏ”¶¥ÌŒÛ	 
- 	if(DeviceMode==SD_POLLING_MODE)						//≤È—Øƒ£ Ω,¬÷—Ø ˝æ›	 
+  	send_data_cfg(SD_DATATIMEOUT,blksize,power,1);	//blksize,Âç°Âà∞ÊéßÂà∂Âô®	  
+   	send_cmd(SD_CMD_READ_SINGLE_BLOCK,1,addr);		//ÂèëÈÄÅCMD17+‰ªéaddrÂú∞ÂùÄÂá∫ËØªÂèñÊï∞ÊçÆ,Áü≠ÂìçÂ∫î 	   
+	errorstatus=cmd_res1_error(SD_CMD_READ_SINGLE_BLOCK);//Á≠âÂæÖR1ÂìçÂ∫î   
+	if(errorstatus!=SD_OK)return errorstatus;   		//ÂìçÂ∫îÈîôËØØ	 
+ 	if(DeviceMode==SD_POLLING_MODE)						//Êü•ËØ¢Ê®°Âºè,ËΩÆËØ¢Êï∞ÊçÆ	 
 	{
- 		GRCore::ASM_INTX_DISABLE();//πÿ±’◊‹÷–∂œ(POLLINGƒ£ Ω,—œΩ˚÷–∂œ¥Ú∂œSDIO∂¡–¥≤Ÿ◊˜!!!)
-		while(!(SDIO->STA&((1<<5)|(1<<1)|(1<<3)|(1<<10)|(1<<9))))//Œﬁ…œ“Á/CRC/≥¨ ±/ÕÍ≥…(±Í÷æ)/∆ ºŒª¥ÌŒÛ
+ 		GRCore::ASM_INTX_DISABLE();//ÂÖ≥Èó≠ÊÄª‰∏≠Êñ≠(POLLINGÊ®°Âºè,‰∏•Á¶Å‰∏≠Êñ≠ÊâìÊñ≠SDIOËØªÂÜôÊìç‰Ωú!!!)
+		while(!(SDIO->STA&((1<<5)|(1<<1)|(1<<3)|(1<<10)|(1<<9))))//Êó†‰∏äÊ∫¢/CRC/Ë∂ÖÊó∂/ÂÆåÊàê(Ê†áÂøó)/Ëµ∑Âßã‰ΩçÈîôËØØ
 		{
-			if(SDIO->STA&(1<<15))						//Ω” ’«¯∞Î¬˙,±Ì æ÷¡…Ÿ¥Ê¡À8∏ˆ◊÷
+			if(SDIO->STA&(1<<15))						//Êé•Êî∂Âå∫ÂçäÊª°,Ë°®Á§∫Ëá≥Â∞ëÂ≠ò‰∫Ü8‰∏™Â≠ó
 			{
-				for(count=0;count<8;count++)			//—≠ª∑∂¡»° ˝æ›
+				for(count=0;count<8;count++)			//Âæ™ÁéØËØªÂèñÊï∞ÊçÆ
 				{
 					*(tempbuff+count)=SDIO->FIFO;
 				}
 				tempbuff+=8;	 
-				timeout=0X7FFFFF; 	//∂¡ ˝æ›“Á≥ˆ ±º‰
-			}else 	//¥¶¿Ì≥¨ ±
+				timeout=0X7FFFFF; 	//ËØªÊï∞ÊçÆÊ∫¢Âá∫Êó∂Èó¥
+			}else 	//Â§ÑÁêÜË∂ÖÊó∂
 			{
 				if(timeout==0)return SD_DATA_TIMEOUT;
 				timeout--;
 			}
 		} 
-		if(SDIO->STA&(1<<3))		// ˝æ›≥¨ ±¥ÌŒÛ
+		if(SDIO->STA&(1<<3))		//Êï∞ÊçÆË∂ÖÊó∂ÈîôËØØ
 		{										   
-	 		SDIO->ICR|=1<<3; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<3; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_DATA_TIMEOUT;
-	 	}else if(SDIO->STA&(1<<1))	// ˝æ›øÈCRC¥ÌŒÛ
+	 	}else if(SDIO->STA&(1<<1))	//Êï∞ÊçÆÂùóCRCÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<1; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<1; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_DATA_CRC_FAIL;		   
-		}else if(SDIO->STA&(1<<5)) 	//Ω” ’fifo…œ“Á¥ÌŒÛ
+		}else if(SDIO->STA&(1<<5)) 	//Êé•Êî∂fifo‰∏äÊ∫¢ÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<5; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<5; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_RX_OVERRUN;		 
-		}else if(SDIO->STA&(1<<9)) 	//Ω” ’∆ ºŒª¥ÌŒÛ
+		}else if(SDIO->STA&(1<<9)) 	//Êé•Êî∂Ëµ∑Âßã‰ΩçÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<9; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<9; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_START_BIT_ERR;		 
 		}   
-		while(SDIO->STA&(1<<21))	//FIFO¿Ô√Ê,ªπ¥Ê‘⁄ø…”√ ˝æ›
+		while(SDIO->STA&(1<<21))	//FIFOÈáåÈù¢,ËøòÂ≠òÂú®ÂèØÁî®Êï∞ÊçÆ
 		{
-			*tempbuff=SDIO->FIFO;	//—≠ª∑∂¡»° ˝æ›
+			*tempbuff=SDIO->FIFO;	//Âæ™ÁéØËØªÂèñÊï∞ÊçÆ
 			tempbuff++;
 		}
-		GRCore::ASM_INTX_ENABLE();//ø™∆Ù◊‹÷–∂œ
-		SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº«
+		GRCore::ASM_INTX_ENABLE();//ÂºÄÂêØÊÄª‰∏≠Êñ≠
+		SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞
 	}else if(DeviceMode==SD_DMA_MODE)
 	{
   	    sd_dma_config((u32*)buf,blksize,0); 
 		TransferError=SD_OK;
-		StopCondition=0;			//µ•øÈ∂¡,≤ª–Ë“™∑¢ÀÕÕ£÷π¥´ ‰÷∏¡Ó
-		TransferEnd=0;				//¥´ ‰Ω· ¯±Í÷√Œª£¨‘⁄÷–∂œ∑˛ŒÒ÷√1
-		SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<5)|(1<<9);	//≈‰÷√–Ë“™µƒ÷–∂œ 
-	 	SDIO->DCTRL|=1<<3;		 	//SDIO DMA πƒ‹ 
- 		while(((DMA2->ISR&0X2000)==RESET)&&(TransferEnd==0)&&(TransferError==SD_OK)&&timeout)timeout--;//µ»¥˝¥´ ‰ÕÍ≥… 
-		if(timeout==0)return SD_DATA_TIMEOUT;//≥¨ ±
+		StopCondition=0;			//ÂçïÂùóËØª,‰∏çÈúÄË¶ÅÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊåá‰ª§
+		TransferEnd=0;				//‰º†ËæìÁªìÊùüÊ†áÁΩÆ‰ΩçÔºåÂú®‰∏≠Êñ≠ÊúçÂä°ÁΩÆ1
+		SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<5)|(1<<9);	//ÈÖçÁΩÆÈúÄË¶ÅÁöÑ‰∏≠Êñ≠ 
+	 	SDIO->DCTRL|=1<<3;		 	//SDIO DMA‰ΩøËÉΩ 
+ 		while(((DMA2->ISR&0X2000)==RESET)&&(TransferEnd==0)&&(TransferError==SD_OK)&&timeout)timeout--;//Á≠âÂæÖ‰º†ËæìÂÆåÊàê 
+		if(timeout==0)return SD_DATA_TIMEOUT;//Ë∂ÖÊó∂
 		if(TransferError!=SD_OK)errorstatus=TransferError;  
     }   
  	return errorstatus; 
@@ -732,92 +734,92 @@ GRSdio::SdErr GRSdio::read_multi_block(u8 *buf,long long  addr,u16 blksize,u32 n
 	u8 power;
    	u32 count=0;
 	u32 timeout=SDIO_DATATIMEOUT;  
-	tempbuff=(u32*)buf;//◊™ªªŒ™u32÷∏’Î
+	tempbuff=(u32*)buf;//ËΩ¨Êç¢‰∏∫u32ÊåáÈíà
 	
-    SDIO->DCTRL=0x0;		// ˝æ›øÿ÷∆ºƒ¥Ê∆˜«Â¡„(πÿDMA)   
-	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//¥Û»›¡øø®
+    SDIO->DCTRL=0x0;		//Êï∞ÊçÆÊéßÂà∂ÂØÑÂ≠òÂô®Ê∏ÖÈõ∂(ÂÖ≥DMA)   
+	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//Â§ßÂÆπÈáèÂç°
 	{
 		blksize=512;
 		addr>>=9;
 	}  
-   	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//«Â≥˝DPSM◊¥Ã¨ª˙≈‰÷√
-	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//ø®À¯¡À
+   	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//Ê∏ÖÈô§DPSMÁä∂ÊÄÅÊú∫ÈÖçÁΩÆ
+	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//Âç°ÈîÅ‰∫Ü
 	if((blksize>0)&&(blksize<=2048)&&((blksize&(blksize-1))==0))
 	{
 		power=convert_from_bytes_to_power_of_two(blksize);	    
-		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//∑¢ÀÕCMD16+…Ë÷√ ˝æ›≥§∂»Œ™blksize,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//µ»¥˝R1œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	 
+		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//ÂèëÈÄÅCMD16+ËÆæÁΩÆÊï∞ÊçÆÈïøÂ∫¶‰∏∫blksize,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//Á≠âÂæÖR1ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	 
 	}else return SD_INVALID_PARAMETER;	  
-	if(nblks>1)											//∂‡øÈ∂¡  
+	if(nblks>1)											//Â§öÂùóËØª  
 	{									    
- 	  	if(nblks*blksize>SD_MAX_DATA_LENGTH)return SD_INVALID_PARAMETER;//≈–∂œ «∑Ò≥¨π˝◊Ó¥ÛΩ” ’≥§∂»
-		send_data_cfg(SD_DATATIMEOUT,nblks*blksize,power,1);//nblks*blksize,512øÈ¥Û–°,ø®µΩøÿ÷∆∆˜	  
-	  	send_cmd(SD_CMD_READ_MULT_BLOCK,1,addr);	//∑¢ÀÕCMD18+¥”addrµÿ÷∑≥ˆ∂¡»° ˝æ›,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_READ_MULT_BLOCK);//µ»¥˝R1œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	  
+ 	  	if(nblks*blksize>SD_MAX_DATA_LENGTH)return SD_INVALID_PARAMETER;//Âà§Êñ≠ÊòØÂê¶Ë∂ÖËøáÊúÄÂ§ßÊé•Êî∂ÈïøÂ∫¶
+		send_data_cfg(SD_DATATIMEOUT,nblks*blksize,power,1);//nblks*blksize,512ÂùóÂ§ßÂ∞è,Âç°Âà∞ÊéßÂà∂Âô®	  
+	  	send_cmd(SD_CMD_READ_MULT_BLOCK,1,addr);	//ÂèëÈÄÅCMD18+‰ªéaddrÂú∞ÂùÄÂá∫ËØªÂèñÊï∞ÊçÆ,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_READ_MULT_BLOCK);//Á≠âÂæÖR1ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	  
  		if(DeviceMode==SD_POLLING_MODE)
 		{
-			GRCore::ASM_INTX_DISABLE();//πÿ±’◊‹÷–∂œ(POLLINGƒ£ Ω,—œΩ˚÷–∂œ¥Ú∂œSDIO∂¡–¥≤Ÿ◊˜!!!)
-			while(!(SDIO->STA&((1<<5)|(1<<1)|(1<<3)|(1<<8)|(1<<9))))//Œﬁ…œ“Á/CRC/≥¨ ±/ÕÍ≥…(±Í÷æ)/∆ ºŒª¥ÌŒÛ
+			GRCore::ASM_INTX_DISABLE();//ÂÖ≥Èó≠ÊÄª‰∏≠Êñ≠(POLLINGÊ®°Âºè,‰∏•Á¶Å‰∏≠Êñ≠ÊâìÊñ≠SDIOËØªÂÜôÊìç‰Ωú!!!)
+			while(!(SDIO->STA&((1<<5)|(1<<1)|(1<<3)|(1<<8)|(1<<9))))//Êó†‰∏äÊ∫¢/CRC/Ë∂ÖÊó∂/ÂÆåÊàê(Ê†áÂøó)/Ëµ∑Âßã‰ΩçÈîôËØØ
 			{
-				if(SDIO->STA&(1<<15))						//Ω” ’«¯∞Î¬˙,±Ì æ÷¡…Ÿ¥Ê¡À8∏ˆ◊÷
+				if(SDIO->STA&(1<<15))						//Êé•Êî∂Âå∫ÂçäÊª°,Ë°®Á§∫Ëá≥Â∞ëÂ≠ò‰∫Ü8‰∏™Â≠ó
 				{
-					for(count=0;count<8;count++)			//—≠ª∑∂¡»° ˝æ›
+					for(count=0;count<8;count++)			//Âæ™ÁéØËØªÂèñÊï∞ÊçÆ
 					{
 						*(tempbuff+count)=SDIO->FIFO;
 					}
 					tempbuff+=8;	 
-					timeout=0X7FFFFF; 	//∂¡ ˝æ›“Á≥ˆ ±º‰
-				}else 	//¥¶¿Ì≥¨ ±
+					timeout=0X7FFFFF; 	//ËØªÊï∞ÊçÆÊ∫¢Âá∫Êó∂Èó¥
+				}else 	//Â§ÑÁêÜË∂ÖÊó∂
 				{
 					if(timeout==0)return SD_DATA_TIMEOUT;
 					timeout--;
 				}
 			}  
-			if(SDIO->STA&(1<<3))		// ˝æ›≥¨ ±¥ÌŒÛ
+			if(SDIO->STA&(1<<3))		//Êï∞ÊçÆË∂ÖÊó∂ÈîôËØØ
 			{										   
-		 		SDIO->ICR|=1<<3; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<3; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_DATA_TIMEOUT;
-		 	}else if(SDIO->STA&(1<<1))	// ˝æ›øÈCRC¥ÌŒÛ
+		 	}else if(SDIO->STA&(1<<1))	//Êï∞ÊçÆÂùóCRCÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<1; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<1; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_DATA_CRC_FAIL;		   
-			}else if(SDIO->STA&(1<<5)) 	//Ω” ’fifo…œ“Á¥ÌŒÛ
+			}else if(SDIO->STA&(1<<5)) 	//Êé•Êî∂fifo‰∏äÊ∫¢ÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<5; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<5; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_RX_OVERRUN;		 
-			}else if(SDIO->STA&(1<<9)) 	//Ω” ’∆ ºŒª¥ÌŒÛ
+			}else if(SDIO->STA&(1<<9)) 	//Êé•Êî∂Ëµ∑Âßã‰ΩçÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<9; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<9; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_START_BIT_ERR;		 
 			}   
-			while(SDIO->STA&(1<<21))	//FIFO¿Ô√Ê,ªπ¥Ê‘⁄ø…”√ ˝æ›
+			while(SDIO->STA&(1<<21))	//FIFOÈáåÈù¢,ËøòÂ≠òÂú®ÂèØÁî®Êï∞ÊçÆ
 			{
-				*tempbuff=SDIO->FIFO;	//—≠ª∑∂¡»° ˝æ›
+				*tempbuff=SDIO->FIFO;	//Âæ™ÁéØËØªÂèñÊï∞ÊçÆ
 				tempbuff++;
 			}
-	 		if(SDIO->STA&(1<<8))		//Ω” ’Ω· ¯
+	 		if(SDIO->STA&(1<<8))		//Êé•Êî∂ÁªìÊùü
 			{
 				if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))
 				{
-					send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//∑¢ÀÕCMD12+Ω· ¯¥´ ‰ 	   
-					errorstatus=cmd_res1_error(SD_CMD_STOP_TRANSMISSION);//µ»¥˝R1œÏ”¶   
+					send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//ÂèëÈÄÅCMD12+ÁªìÊùü‰º†Ëæì 	   
+					errorstatus=cmd_res1_error(SD_CMD_STOP_TRANSMISSION);//Á≠âÂæÖR1ÂìçÂ∫î   
 					if(errorstatus!=SD_OK)return errorstatus;	 
 				}
  			}
-			GRCore::ASM_INTX_ENABLE();//ø™∆Ù◊‹÷–∂œ
-	 		SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº« 
+			GRCore::ASM_INTX_ENABLE();//ÂºÄÂêØÊÄª‰∏≠Êñ≠
+	 		SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞ 
  		}else if(DeviceMode==SD_DMA_MODE)
 		{
 	 	    sd_dma_config((u32*)buf,nblks*blksize,0); 
 	   		TransferError=SD_OK;
-			StopCondition=1;			//∂‡øÈ∂¡,–Ë“™∑¢ÀÕÕ£÷π¥´ ‰÷∏¡Ó 
-			TransferEnd=0;				//¥´ ‰Ω· ¯±Í÷√Œª£¨‘⁄÷–∂œ∑˛ŒÒ÷√1
-			SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<5)|(1<<9);	//≈‰÷√–Ë“™µƒ÷–∂œ 
-		 	SDIO->DCTRL|=1<<3;		 						//SDIO DMA πƒ‹ 
-	 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//µ»¥˝¥´ ‰ÕÍ≥… 
-			if(timeout==0)return SD_DATA_TIMEOUT;//≥¨ ±
+			StopCondition=1;			//Â§öÂùóËØª,ÈúÄË¶ÅÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊåá‰ª§ 
+			TransferEnd=0;				//‰º†ËæìÁªìÊùüÊ†áÁΩÆ‰ΩçÔºåÂú®‰∏≠Êñ≠ÊúçÂä°ÁΩÆ1
+			SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<5)|(1<<9);	//ÈÖçÁΩÆÈúÄË¶ÅÁöÑ‰∏≠Êñ≠ 
+		 	SDIO->DCTRL|=1<<3;		 						//SDIO DMA‰ΩøËÉΩ 
+	 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//Á≠âÂæÖ‰º†ËæìÂÆåÊàê 
+			if(timeout==0)return SD_DATA_TIMEOUT;//Ë∂ÖÊó∂
 			while((TransferEnd==0)&&(TransferError==SD_OK)); 
 			if(TransferError!=SD_OK)errorstatus=TransferError;  	 
 		}		 
@@ -831,13 +833,13 @@ GRSdio::SdErr GRSdio::write_block(u8 *buf,long long addr,  u16 blksize)
 	u8  power=0,cardstate=0;
 	u32 timeout=0,bytestransferred=0;
 	u32 cardstatus=0,count=0,restwords=0;
-	u32	tlen=blksize;						//◊‹≥§∂»(◊÷Ω⁄)
+	u32	tlen=blksize;						//ÊÄªÈïøÂ∫¶(Â≠óËäÇ)
 	u32*tempbuff=(u32*)buf;								 
- 	if(buf==NULL)return SD_INVALID_PARAMETER;//≤Œ ˝¥ÌŒÛ   
-  	SDIO->DCTRL=0x0;							// ˝æ›øÿ÷∆ºƒ¥Ê∆˜«Â¡„(πÿDMA)   
-  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//«Â≥˝DPSM◊¥Ã¨ª˙≈‰÷√
-	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//ø®À¯¡À
- 	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)	//¥Û»›¡øø®
+ 	if(buf==NULL)return SD_INVALID_PARAMETER;//ÂèÇÊï∞ÈîôËØØ   
+  	SDIO->DCTRL=0x0;							//Êï∞ÊçÆÊéßÂà∂ÂØÑÂ≠òÂô®Ê∏ÖÈõ∂(ÂÖ≥DMA)   
+  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//Ê∏ÖÈô§DPSMÁä∂ÊÄÅÊú∫ÈÖçÁΩÆ
+	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//Âç°ÈîÅ‰∫Ü
+ 	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)	//Â§ßÂÆπÈáèÂç°
 	{
 		blksize=512;
 		addr>>=9;
@@ -845,38 +847,38 @@ GRSdio::SdErr GRSdio::write_block(u8 *buf,long long addr,  u16 blksize)
 	if((blksize>0)&&(blksize<=2048)&&((blksize&(blksize-1))==0))
 	{
 		power=convert_from_bytes_to_power_of_two(blksize);	    
-		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//∑¢ÀÕCMD16+…Ë÷√ ˝æ›≥§∂»Œ™blksize,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//µ»¥˝R1œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	 
+		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//ÂèëÈÄÅCMD16+ËÆæÁΩÆÊï∞ÊçÆÈïøÂ∫¶‰∏∫blksize,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//Á≠âÂæÖR1ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	 
 	}else return SD_INVALID_PARAMETER;	 
-   	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);	//∑¢ÀÕCMD13,≤È—Øø®µƒ◊¥Ã¨,∂ÃœÏ”¶ 	   
-	errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);		//µ»¥˝R1œÏ”¶   		   
+   	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);	//ÂèëÈÄÅCMD13,Êü•ËØ¢Âç°ÁöÑÁä∂ÊÄÅ,Áü≠ÂìçÂ∫î 	   
+	errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);		//Á≠âÂæÖR1ÂìçÂ∫î   		   
 	if(errorstatus!=SD_OK)return errorstatus;
 	cardstatus=SDIO->RESP1;													  
 	timeout=SD_DATATIMEOUT;
-   	while(((cardstatus&0x00000100)==0)&&(timeout>0)) 	//ºÏ≤ÈREADY_FOR_DATAŒª «∑Ò÷√Œª
+   	while(((cardstatus&0x00000100)==0)&&(timeout>0)) 	//Ê£ÄÊü•READY_FOR_DATA‰ΩçÊòØÂê¶ÁΩÆ‰Ωç
 	{
 		timeout--;
-	   	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);//∑¢ÀÕCMD13,≤È—Øø®µƒ◊¥Ã¨,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);	//µ»¥˝R1œÏ”¶   		   
+	   	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);//ÂèëÈÄÅCMD13,Êü•ËØ¢Âç°ÁöÑÁä∂ÊÄÅ,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_SEND_STATUS);	//Á≠âÂæÖR1ÂìçÂ∫î   		   
 		if(errorstatus!=SD_OK)return errorstatus;				    
 		cardstatus=SDIO->RESP1;													  
 	}
 	if(timeout==0)return SD_ERROR;
-   	send_cmd(SD_CMD_WRITE_SINGLE_BLOCK,1,addr);	//∑¢ÀÕCMD24,–¥µ•øÈ÷∏¡Ó,∂ÃœÏ”¶ 	   
-	errorstatus=cmd_res1_error(SD_CMD_WRITE_SINGLE_BLOCK);//µ»¥˝R1œÏ”¶   		   
+   	send_cmd(SD_CMD_WRITE_SINGLE_BLOCK,1,addr);	//ÂèëÈÄÅCMD24,ÂÜôÂçïÂùóÊåá‰ª§,Áü≠ÂìçÂ∫î 	   
+	errorstatus=cmd_res1_error(SD_CMD_WRITE_SINGLE_BLOCK);//Á≠âÂæÖR1ÂìçÂ∫î   		   
 	if(errorstatus!=SD_OK)return errorstatus;   	  
-	StopCondition=0;									//µ•øÈ–¥,≤ª–Ë“™∑¢ÀÕÕ£÷π¥´ ‰÷∏¡Ó 
- 	send_data_cfg(SD_DATATIMEOUT,blksize,power,0);	//blksize, øÿ÷∆∆˜µΩø®	  
+	StopCondition=0;									//ÂçïÂùóÂÜô,‰∏çÈúÄË¶ÅÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊåá‰ª§ 
+ 	send_data_cfg(SD_DATATIMEOUT,blksize,power,0);	//blksize, ÊéßÂà∂Âô®Âà∞Âç°	  
 	timeout=SDIO_DATATIMEOUT;
 	if (DeviceMode == SD_POLLING_MODE)
 	{
-		GRCore::ASM_INTX_DISABLE();//πÿ±’◊‹÷–∂œ(POLLINGƒ£ Ω,—œΩ˚÷–∂œ¥Ú∂œSDIO∂¡–¥≤Ÿ◊˜!!!)
-		while(!(SDIO->STA&((1<<10)|(1<<4)|(1<<1)|(1<<3)|(1<<9))))// ˝æ›øÈ∑¢ÀÕ≥…π¶/œ¬“Á/CRC/≥¨ ±/∆ ºŒª¥ÌŒÛ
+		GRCore::ASM_INTX_DISABLE();//ÂÖ≥Èó≠ÊÄª‰∏≠Êñ≠(POLLINGÊ®°Âºè,‰∏•Á¶Å‰∏≠Êñ≠ÊâìÊñ≠SDIOËØªÂÜôÊìç‰Ωú!!!)
+		while(!(SDIO->STA&((1<<10)|(1<<4)|(1<<1)|(1<<3)|(1<<9))))//Êï∞ÊçÆÂùóÂèëÈÄÅÊàêÂäü/‰∏ãÊ∫¢/CRC/Ë∂ÖÊó∂/Ëµ∑Âßã‰ΩçÈîôËØØ
 		{
-			if(SDIO->STA&(1<<14))							//∑¢ÀÕ«¯∞Îø’,±Ì æ÷¡…Ÿ¥Ê¡À8∏ˆ◊÷
+			if(SDIO->STA&(1<<14))							//ÂèëÈÄÅÂå∫ÂçäÁ©∫,Ë°®Á§∫Ëá≥Â∞ëÂ≠ò‰∫Ü8‰∏™Â≠ó
 			{
-				if((tlen-bytestransferred)<SD_HALFFIFOBYTES)//≤ªπª32◊÷Ω⁄¡À
+				if((tlen-bytestransferred)<SD_HALFFIFOBYTES)//‰∏çÂ§ü32Â≠óËäÇ‰∫Ü
 				{
 					restwords=((tlen-bytestransferred)%4==0)?((tlen-bytestransferred)/4):((tlen-bytestransferred)/4+1);
 					
@@ -893,52 +895,52 @@ GRSdio::SdErr GRSdio::write_block(u8 *buf,long long addr,  u16 blksize)
 					tempbuff+=8;
 					bytestransferred+=32;
 				}
-				timeout=0X3FFFFFFF;	//–¥ ˝æ›“Á≥ˆ ±º‰
+				timeout=0X3FFFFFFF;	//ÂÜôÊï∞ÊçÆÊ∫¢Âá∫Êó∂Èó¥
 			}else
 			{
 				if(timeout==0)return SD_DATA_TIMEOUT;
 				timeout--;
 			}
 		} 
-		if(SDIO->STA&(1<<3))		// ˝æ›≥¨ ±¥ÌŒÛ
+		if(SDIO->STA&(1<<3))		//Êï∞ÊçÆË∂ÖÊó∂ÈîôËØØ
 		{										   
-	 		SDIO->ICR|=1<<3; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<3; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_DATA_TIMEOUT;
-	 	}else if(SDIO->STA&(1<<1))	// ˝æ›øÈCRC¥ÌŒÛ
+	 	}else if(SDIO->STA&(1<<1))	//Êï∞ÊçÆÂùóCRCÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<1; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<1; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_DATA_CRC_FAIL;		   
-		}else if(SDIO->STA&(1<<4)) 	//Ω” ’fifoœ¬“Á¥ÌŒÛ
+		}else if(SDIO->STA&(1<<4)) 	//Êé•Êî∂fifo‰∏ãÊ∫¢ÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<4; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<4; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_TX_UNDERRUN;		 
-		}else if(SDIO->STA&(1<<9)) 	//Ω” ’∆ ºŒª¥ÌŒÛ
+		}else if(SDIO->STA&(1<<9)) 	//Êé•Êî∂Ëµ∑Âßã‰ΩçÈîôËØØ
 		{
-	 		SDIO->ICR|=1<<9; 		//«Â¥ÌŒÛ±Í÷æ
+	 		SDIO->ICR|=1<<9; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 			return SD_START_BIT_ERR;		 
 		}   
-		GRCore::ASM_INTX_ENABLE();//ø™∆Ù◊‹÷–∂œ
-		SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº«	  
+		GRCore::ASM_INTX_ENABLE();//ÂºÄÂêØÊÄª‰∏≠Êñ≠
+		SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞	  
 	}else if(DeviceMode==SD_DMA_MODE)
 	{
-		sd_dma_config((u32*)buf,blksize,1);//SDIO DMA≈‰÷√
+		sd_dma_config((u32*)buf,blksize,1);//SDIO DMAÈÖçÁΩÆ
    		TransferError=SD_OK;
-		StopCondition=0;			//µ•øÈ–¥,≤ª–Ë“™∑¢ÀÕÕ£÷π¥´ ‰÷∏¡Ó 
-		TransferEnd=0;				//¥´ ‰Ω· ¯±Í÷√Œª£¨‘⁄÷–∂œ∑˛ŒÒ÷√1
-		SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<4)|(1<<9);	//≈‰÷√≤˙…˙ ˝æ›Ω” ’ÕÍ≥…÷–∂œ
- 	 	SDIO->DCTRL|=1<<3;								//SDIO DMA πƒ‹.  
- 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//µ»¥˝¥´ ‰ÕÍ≥… 
+		StopCondition=0;			//ÂçïÂùóÂÜô,‰∏çÈúÄË¶ÅÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊåá‰ª§ 
+		TransferEnd=0;				//‰º†ËæìÁªìÊùüÊ†áÁΩÆ‰ΩçÔºåÂú®‰∏≠Êñ≠ÊúçÂä°ÁΩÆ1
+		SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<4)|(1<<9);	//ÈÖçÁΩÆ‰∫ßÁîüÊï∞ÊçÆÊé•Êî∂ÂÆåÊàê‰∏≠Êñ≠
+ 	 	SDIO->DCTRL|=1<<3;								//SDIO DMA‰ΩøËÉΩ.  
+ 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//Á≠âÂæÖ‰º†ËæìÂÆåÊàê 
 		if(timeout==0)
 		{
-  			init();	 					//÷ÿ–¬≥ı ºªØSDø®,ø…“‘Ω‚æˆ–¥»ÎÀ¿ª˙µƒŒ Ã‚
-			return SD_DATA_TIMEOUT;			//≥¨ ±	 
+  			init();	 					//ÈáçÊñ∞ÂàùÂßãÂåñSDÂç°,ÂèØ‰ª•Ëß£ÂÜ≥ÂÜôÂÖ•Ê≠ªÊú∫ÁöÑÈóÆÈ¢ò
+			return SD_DATA_TIMEOUT;			//Ë∂ÖÊó∂	 
  		}
 		timeout=SDIO_DATATIMEOUT;
 		while((TransferEnd==0)&&(TransferError==SD_OK)&&timeout)timeout--;
- 		if(timeout==0)return SD_DATA_TIMEOUT;			//≥¨ ±	 
+ 		if(timeout==0)return SD_DATA_TIMEOUT;			//Ë∂ÖÊó∂	 
   		if(TransferError!=SD_OK)return TransferError;
  	}  
- 	SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº«
+ 	SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞
  	errorstatus=is_card_programming(&cardstate);
  	while((errorstatus==SD_OK)&&((cardstate==SD_CARD_PROGRAMMING)||(cardstate==SD_CARD_RECEIVING)))
 	{
@@ -953,13 +955,13 @@ GRSdio::SdErr GRSdio::write_multi_block(u8 *buf,long long addr,u16 blksize,u32 n
 	u8  power = 0, cardstate = 0;
 	u32 timeout=0,bytestransferred=0;
 	u32 count = 0, restwords = 0;
-	u32 tlen=nblks*blksize;				//◊‹≥§∂»(◊÷Ω⁄)
+	u32 tlen=nblks*blksize;				//ÊÄªÈïøÂ∫¶(Â≠óËäÇ)
 	u32 *tempbuff = (u32*)buf;  
-  	if(buf==NULL)return SD_INVALID_PARAMETER; //≤Œ ˝¥ÌŒÛ  
-  	SDIO->DCTRL=0x0;							// ˝æ›øÿ÷∆ºƒ¥Ê∆˜«Â¡„(πÿDMA)   
-  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//«Â≥˝DPSM◊¥Ã¨ª˙≈‰÷√
-	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//ø®À¯¡À
- 	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//¥Û»›¡øø®
+  	if(buf==NULL)return SD_INVALID_PARAMETER; //ÂèÇÊï∞ÈîôËØØ  
+  	SDIO->DCTRL=0x0;							//Êï∞ÊçÆÊéßÂà∂ÂØÑÂ≠òÂô®Ê∏ÖÈõ∂(ÂÖ≥DMA)   
+  	send_data_cfg(SD_DATATIMEOUT,0,0,0);	//Ê∏ÖÈô§DPSMÁä∂ÊÄÅÊú∫ÈÖçÁΩÆ
+	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//Âç°ÈîÅ‰∫Ü
+ 	if(CardType==SDIO_HIGH_CAPACITY_SD_CARD)//Â§ßÂÆπÈáèÂç°
 	{
 		blksize=512;
 		addr>>=9;
@@ -967,43 +969,43 @@ GRSdio::SdErr GRSdio::write_multi_block(u8 *buf,long long addr,u16 blksize,u32 n
 	if((blksize>0)&&(blksize<=2048)&&((blksize&(blksize-1))==0))
 	{
 		power=convert_from_bytes_to_power_of_two(blksize);	    
-		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//∑¢ÀÕCMD16+…Ë÷√ ˝æ›≥§∂»Œ™blksize,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//µ»¥˝R1œÏ”¶   
-		if(errorstatus!=SD_OK)return errorstatus;   	//œÏ”¶¥ÌŒÛ	 
+		send_cmd(SD_CMD_SET_BLOCKLEN,1,blksize);	//ÂèëÈÄÅCMD16+ËÆæÁΩÆÊï∞ÊçÆÈïøÂ∫¶‰∏∫blksize,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);	//Á≠âÂæÖR1ÂìçÂ∫î   
+		if(errorstatus!=SD_OK)return errorstatus;   	//ÂìçÂ∫îÈîôËØØ	 
 	}else return SD_INVALID_PARAMETER;	 
 	if(nblks>1)
 	{					  
 		if(nblks*blksize>SD_MAX_DATA_LENGTH)return SD_INVALID_PARAMETER;   
      	if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))
     	{
-			//Ã·∏ﬂ–‘ƒ‹
-	 	   	send_cmd(SD_CMD_APP_CMD,1,(u32)RCA<<16);	//∑¢ÀÕACMD55,∂ÃœÏ”¶ 	   
-			errorstatus=cmd_res1_error(SD_CMD_APP_CMD);		//µ»¥˝R1œÏ”¶   		   
+			//ÊèêÈ´òÊÄßËÉΩ
+	 	   	send_cmd(SD_CMD_APP_CMD,1,(u32)RCA<<16);	//ÂèëÈÄÅACMD55,Áü≠ÂìçÂ∫î 	   
+			errorstatus=cmd_res1_error(SD_CMD_APP_CMD);		//Á≠âÂæÖR1ÂìçÂ∫î   		   
 			if(errorstatus!=SD_OK)return errorstatus;				    
-	 	   	send_cmd(SD_CMD_SET_BLOCK_COUNT,1,nblks);	//∑¢ÀÕCMD23,…Ë÷√øÈ ˝¡ø,∂ÃœÏ”¶ 	   
-			errorstatus=cmd_res1_error(SD_CMD_SET_BLOCK_COUNT);//µ»¥˝R1œÏ”¶   		   
+	 	   	send_cmd(SD_CMD_SET_BLOCK_COUNT,1,nblks);	//ÂèëÈÄÅCMD23,ËÆæÁΩÆÂùóÊï∞Èáè,Áü≠ÂìçÂ∫î 	   
+			errorstatus=cmd_res1_error(SD_CMD_SET_BLOCK_COUNT);//Á≠âÂæÖR1ÂìçÂ∫î   		   
 			if(errorstatus!=SD_OK)return errorstatus;				    
 		} 
-		send_cmd(SD_CMD_WRITE_MULT_BLOCK,1,addr);		//∑¢ÀÕCMD25,∂‡øÈ–¥÷∏¡Ó,∂ÃœÏ”¶ 	   
-		errorstatus=cmd_res1_error(SD_CMD_WRITE_MULT_BLOCK);	//µ»¥˝R1œÏ”¶   		   
+		send_cmd(SD_CMD_WRITE_MULT_BLOCK,1,addr);		//ÂèëÈÄÅCMD25,Â§öÂùóÂÜôÊåá‰ª§,Áü≠ÂìçÂ∫î 	   
+		errorstatus=cmd_res1_error(SD_CMD_WRITE_MULT_BLOCK);	//Á≠âÂæÖR1ÂìçÂ∫î   		   
 		if(errorstatus!=SD_OK)return errorstatus;
- 	 	send_data_cfg(SD_DATATIMEOUT,nblks*blksize,power,0);//blksize, øÿ÷∆∆˜µΩø®	
+ 	 	send_data_cfg(SD_DATATIMEOUT,nblks*blksize,power,0);//blksize, ÊéßÂà∂Âô®Âà∞Âç°	
 		if(DeviceMode==SD_POLLING_MODE)
 	    {
 			timeout=SDIO_DATATIMEOUT;
-				GRCore::ASM_INTX_DISABLE();//πÿ±’◊‹÷–∂œ(POLLINGƒ£ Ω,—œΩ˚÷–∂œ¥Ú∂œSDIO∂¡–¥≤Ÿ◊˜!!!)
-			while(!(SDIO->STA&((1<<4)|(1<<1)|(1<<8)|(1<<3)|(1<<9))))//œ¬“Á/CRC/ ˝æ›Ω· ¯/≥¨ ±/∆ ºŒª¥ÌŒÛ
+				GRCore::ASM_INTX_DISABLE();//ÂÖ≥Èó≠ÊÄª‰∏≠Êñ≠(POLLINGÊ®°Âºè,‰∏•Á¶Å‰∏≠Êñ≠ÊâìÊñ≠SDIOËØªÂÜôÊìç‰Ωú!!!)
+			while(!(SDIO->STA&((1<<4)|(1<<1)|(1<<8)|(1<<3)|(1<<9))))//‰∏ãÊ∫¢/CRC/Êï∞ÊçÆÁªìÊùü/Ë∂ÖÊó∂/Ëµ∑Âßã‰ΩçÈîôËØØ
 			{
-				if(SDIO->STA&(1<<14))							//∑¢ÀÕ«¯∞Îø’,±Ì æ÷¡…Ÿ¥Ê¡À8◊÷(32◊÷Ω⁄)
+				if(SDIO->STA&(1<<14))							//ÂèëÈÄÅÂå∫ÂçäÁ©∫,Ë°®Á§∫Ëá≥Â∞ëÂ≠ò‰∫Ü8Â≠ó(32Â≠óËäÇ)
 				{	  
-					if((tlen-bytestransferred)<SD_HALFFIFOBYTES)//≤ªπª32◊÷Ω⁄¡À
+					if((tlen-bytestransferred)<SD_HALFFIFOBYTES)//‰∏çÂ§ü32Â≠óËäÇ‰∫Ü
 					{
 						restwords=((tlen-bytestransferred)%4==0)?((tlen-bytestransferred)/4):((tlen-bytestransferred)/4+1);
 						for(count=0;count<restwords;count++,tempbuff++,bytestransferred+=4)
 						{
 							SDIO->FIFO=*tempbuff;
 						}
-					}else 										//∑¢ÀÕ«¯∞Îø’,ø…“‘∑¢ÀÕ÷¡…Ÿ8◊÷(32◊÷Ω⁄) ˝æ›
+					}else 										//ÂèëÈÄÅÂå∫ÂçäÁ©∫,ÂèØ‰ª•ÂèëÈÄÅËá≥Â∞ë8Â≠ó(32Â≠óËäÇ)Êï∞ÊçÆ
 					{
 						for(count=0;count<SD_HALFFIFO;count++)
 						{
@@ -1012,63 +1014,63 @@ GRSdio::SdErr GRSdio::write_multi_block(u8 *buf,long long addr,u16 blksize,u32 n
 						tempbuff+=SD_HALFFIFO;
 						bytestransferred+=SD_HALFFIFOBYTES;
 					}
-					timeout=0X3FFFFFFF;	//–¥ ˝æ›“Á≥ˆ ±º‰
+					timeout=0X3FFFFFFF;	//ÂÜôÊï∞ÊçÆÊ∫¢Âá∫Êó∂Èó¥
 				}else
 				{
 					if(timeout==0)return SD_DATA_TIMEOUT; 
 					timeout--;
 				}
 			} 
-			if(SDIO->STA&(1<<3))		// ˝æ›≥¨ ±¥ÌŒÛ
+			if(SDIO->STA&(1<<3))		//Êï∞ÊçÆË∂ÖÊó∂ÈîôËØØ
 			{										   
-		 		SDIO->ICR|=1<<3; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<3; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_DATA_TIMEOUT;
-		 	}else if(SDIO->STA&(1<<1))	// ˝æ›øÈCRC¥ÌŒÛ
+		 	}else if(SDIO->STA&(1<<1))	//Êï∞ÊçÆÂùóCRCÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<1; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<1; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_DATA_CRC_FAIL;		   
-			}else if(SDIO->STA&(1<<4)) 	//Ω” ’fifoœ¬“Á¥ÌŒÛ
+			}else if(SDIO->STA&(1<<4)) 	//Êé•Êî∂fifo‰∏ãÊ∫¢ÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<4; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<4; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_TX_UNDERRUN;		 
-			}else if(SDIO->STA&(1<<9)) 	//Ω” ’∆ ºŒª¥ÌŒÛ
+			}else if(SDIO->STA&(1<<9)) 	//Êé•Êî∂Ëµ∑Âßã‰ΩçÈîôËØØ
 			{
-		 		SDIO->ICR|=1<<9; 		//«Â¥ÌŒÛ±Í÷æ
+		 		SDIO->ICR|=1<<9; 		//Ê∏ÖÈîôËØØÊ†áÂøó
 				return SD_START_BIT_ERR;		 
 			}   										   
-			if(SDIO->STA&(1<<8))		//∑¢ÀÕΩ· ¯
+			if(SDIO->STA&(1<<8))		//ÂèëÈÄÅÁªìÊùü
 			{															 
 				if((SDIO_STD_CAPACITY_SD_CARD_V1_1==CardType)||(SDIO_STD_CAPACITY_SD_CARD_V2_0==CardType)||(SDIO_HIGH_CAPACITY_SD_CARD==CardType))
 				{
-					send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//∑¢ÀÕCMD12+Ω· ¯¥´ ‰ 	   
-					errorstatus=cmd_res1_error(SD_CMD_STOP_TRANSMISSION);//µ»¥˝R1œÏ”¶   
+					send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//ÂèëÈÄÅCMD12+ÁªìÊùü‰º†Ëæì 	   
+					errorstatus=cmd_res1_error(SD_CMD_STOP_TRANSMISSION);//Á≠âÂæÖR1ÂìçÂ∫î   
 					if(errorstatus!=SD_OK)return errorstatus;	 
 				}
 			}
-			GRCore::ASM_INTX_ENABLE();//ø™∆Ù◊‹÷–∂œ
-	 		SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº« 
+			GRCore::ASM_INTX_ENABLE();//ÂºÄÂêØÊÄª‰∏≠Êñ≠
+	 		SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞ 
 	    }else if(DeviceMode==SD_DMA_MODE)
 		{
-			sd_dma_config((u32*)buf,nblks*blksize,1);//SDIO DMA≈‰÷√
+			sd_dma_config((u32*)buf,nblks*blksize,1);//SDIO DMAÈÖçÁΩÆ
 	   		TransferError=SD_OK;
-			StopCondition=1;			//∂‡øÈ–¥,–Ë“™∑¢ÀÕÕ£÷π¥´ ‰÷∏¡Ó 
-			TransferEnd=0;				//¥´ ‰Ω· ¯±Í÷√Œª£¨‘⁄÷–∂œ∑˛ŒÒ÷√1
-			SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<4)|(1<<9);	//≈‰÷√≤˙…˙ ˝æ›Ω” ’ÕÍ≥…÷–∂œ
-	 	 	SDIO->DCTRL|=1<<3;								//SDIO DMA πƒ‹. 
+			StopCondition=1;			//Â§öÂùóÂÜô,ÈúÄË¶ÅÂèëÈÄÅÂÅúÊ≠¢‰º†ËæìÊåá‰ª§ 
+			TransferEnd=0;				//‰º†ËæìÁªìÊùüÊ†áÁΩÆ‰ΩçÔºåÂú®‰∏≠Êñ≠ÊúçÂä°ÁΩÆ1
+			SDIO->MASK|=(1<<1)|(1<<3)|(1<<8)|(1<<4)|(1<<9);	//ÈÖçÁΩÆ‰∫ßÁîüÊï∞ÊçÆÊé•Êî∂ÂÆåÊàê‰∏≠Êñ≠
+	 	 	SDIO->DCTRL|=1<<3;								//SDIO DMA‰ΩøËÉΩ. 
 			timeout=SDIO_DATATIMEOUT;
-	 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//µ»¥˝¥´ ‰ÕÍ≥… 
-			if(timeout==0)	 								//≥¨ ±
+	 		while(((DMA2->ISR&0X2000)==RESET)&&timeout)timeout--;//Á≠âÂæÖ‰º†ËæìÂÆåÊàê 
+			if(timeout==0)	 								//Ë∂ÖÊó∂
 			{									  
-  				init();	 					//÷ÿ–¬≥ı ºªØSDø®,ø…“‘Ω‚æˆ–¥»ÎÀ¿ª˙µƒŒ Ã‚
-	 			return SD_DATA_TIMEOUT;			//≥¨ ±	 
+  				init();	 					//ÈáçÊñ∞ÂàùÂßãÂåñSDÂç°,ÂèØ‰ª•Ëß£ÂÜ≥ÂÜôÂÖ•Ê≠ªÊú∫ÁöÑÈóÆÈ¢ò
+	 			return SD_DATA_TIMEOUT;			//Ë∂ÖÊó∂	 
 	 		}
 			timeout=SDIO_DATATIMEOUT;
 			while((TransferEnd==0)&&(TransferError==SD_OK)&&timeout)timeout--;
-	 		if(timeout==0)return SD_DATA_TIMEOUT;			//≥¨ ±	 
+	 		if(timeout==0)return SD_DATA_TIMEOUT;			//Ë∂ÖÊó∂	 
 	 		if(TransferError!=SD_OK)return TransferError;	 
 		}
   	}
- 	SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº«
+ 	SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞
  	errorstatus=is_card_programming(&cardstate);
  	while((errorstatus==SD_OK)&&((cardstate==SD_CARD_PROGRAMMING)||(cardstate==SD_CARD_RECEIVING)))
 	{
@@ -1079,50 +1081,50 @@ GRSdio::SdErr GRSdio::write_multi_block(u8 *buf,long long addr,u16 blksize,u32 n
 
 void GRSdio::CIRQ()
 {
-	if(SDIO->STA&(1<<8))//Ω” ’ÕÍ≥…÷–∂œ
+	if(SDIO->STA&(1<<8))//Êé•Êî∂ÂÆåÊàê‰∏≠Êñ≠
 	{	 
 		if (StopCondition==1)
 		{
-			send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//∑¢ÀÕCMD12,Ω· ¯¥´ ‰ 	   
+			send_cmd(SD_CMD_STOP_TRANSMISSION,1,0);		//ÂèëÈÄÅCMD12,ÁªìÊùü‰º†Ëæì 	   
 			TransferError=cmd_res1_error(SD_CMD_STOP_TRANSMISSION);
 		}else TransferError = SD_OK;	
- 		SDIO->ICR|=1<<8;//«Â≥˝ÕÍ≥…÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+ 		SDIO->ICR|=1<<8;//Ê∏ÖÈô§ÂÆåÊàê‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
  		TransferEnd = 1;
 		//return(TransferError);
 	}
- 	if(SDIO->STA&(1<<1))// ˝æ›CRC¥ÌŒÛ
+ 	if(SDIO->STA&(1<<1))//Êï∞ÊçÆCRCÈîôËØØ
 	{
-		SDIO->ICR|=1<<1;//«Â≥˝÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+		SDIO->ICR|=1<<1;//Ê∏ÖÈô§‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
 	    TransferError = SD_DATA_CRC_FAIL;
 	    //return(SD_DATA_CRC_FAIL);
 	}
- 	if(SDIO->STA&(1<<3))// ˝æ›≥¨ ±¥ÌŒÛ
+ 	if(SDIO->STA&(1<<3))//Êï∞ÊçÆË∂ÖÊó∂ÈîôËØØ
 	{
-		SDIO->ICR|=1<<3;//«Â≥˝÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+		SDIO->ICR|=1<<3;//Ê∏ÖÈô§‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
 	    TransferError = SD_DATA_TIMEOUT;
 	    //return(SD_DATA_TIMEOUT);
 	}
-  	if(SDIO->STA&(1<<5))//FIFO…œ“Á¥ÌŒÛ
+  	if(SDIO->STA&(1<<5))//FIFO‰∏äÊ∫¢ÈîôËØØ
 	{
-		SDIO->ICR|=1<<5;//«Â≥˝÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+		SDIO->ICR|=1<<5;//Ê∏ÖÈô§‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
 	    TransferError = SD_RX_OVERRUN;
 	    //return(SD_RX_OVERRUN);
 	}
-   	if(SDIO->STA&(1<<4))//FIFOœ¬“Á¥ÌŒÛ
+   	if(SDIO->STA&(1<<4))//FIFO‰∏ãÊ∫¢ÈîôËØØ
 	{
-		SDIO->ICR|=1<<4;//«Â≥˝÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+		SDIO->ICR|=1<<4;//Ê∏ÖÈô§‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
 	    TransferError = SD_TX_UNDERRUN;
 	    //return(SD_TX_UNDERRUN);
 	}
-	if(SDIO->STA&(1<<9))//∆ ºŒª¥ÌŒÛ
+	if(SDIO->STA&(1<<9))//Ëµ∑Âßã‰ΩçÈîôËØØ
 	{
-		SDIO->ICR|=1<<9;//«Â≥˝÷–∂œ±Íº«
-		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//πÿ±’œ‡πÿ÷–∂œ
+		SDIO->ICR|=1<<9;//Ê∏ÖÈô§‰∏≠Êñ≠Ê†áËÆ∞
+		SDIO->MASK&=~((1<<1)|(1<<3)|(1<<8)|(1<<14)|(1<<15)|(1<<4)|(1<<5)|(1<<9));//ÂÖ≥Èó≠Áõ∏ÂÖ≥‰∏≠Êñ≠
 	    TransferError = SD_START_BIT_ERR;
 	    //return(SD_START_BIT_ERR);
 	}
@@ -1135,10 +1137,10 @@ GRSdio::SdErr GRSdio::cmd_error()
 	u32 timeout=SDIO_CMD0TIMEOUT;	   
 	while(timeout--)
 	{
-		if(SDIO->STA&(1<<7))break;	//√¸¡Ó“—∑¢ÀÕ(Œﬁ–ËœÏ”¶)	 
+		if(SDIO->STA&(1<<7))break;	//ÂëΩ‰ª§Â∑≤ÂèëÈÄÅ(Êó†ÈúÄÂìçÂ∫î)	 
 	}	    
 	if(timeout==0)return SD_CMD_RSP_TIMEOUT;  
-	SDIO->ICR=0X5FF;				//«Â≥˝±Íº«
+	SDIO->ICR=0X5FF;				//Ê∏ÖÈô§Ê†áËÆ∞
 	return errorstatus;
 }
 
@@ -1148,21 +1150,21 @@ GRSdio::SdErr GRSdio::cmd_res1_error(u8 cmd)
 	while(1)
 	{
 		status=SDIO->STA;
-		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRC¥ÌŒÛ/√¸¡ÓœÏ”¶≥¨ ±/“—æ≠ ’µΩœÏ”¶(CRC–£—È≥…π¶)
+		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRCÈîôËØØ/ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂/Â∑≤ÁªèÊî∂Âà∞ÂìçÂ∫î(CRCÊ†°È™åÊàêÂäü)
 	} 
-	if(status&(1<<2))					//œÏ”¶≥¨ ±
+	if(status&(1<<2))					//ÂìçÂ∫îË∂ÖÊó∂
 	{																				    
- 		SDIO->ICR=1<<2;					//«Â≥˝√¸¡ÓœÏ”¶≥¨ ±±Í÷æ
+ 		SDIO->ICR=1<<2;					//Ê∏ÖÈô§ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂Ê†áÂøó
 		return SD_CMD_RSP_TIMEOUT;
 	}	
- 	if(status&(1<<0))					//CRC¥ÌŒÛ
+ 	if(status&(1<<0))					//CRCÈîôËØØ
 	{																				    
- 		SDIO->ICR=1<<0;					//«Â≥˝±Í÷æ
+ 		SDIO->ICR=1<<0;					//Ê∏ÖÈô§Ê†áÂøó
 		return SD_CMD_CRC_FAIL;
 	}		
-	if(SDIO->RESPCMD!=cmd)return SD_ILLEGAL_CMD;//√¸¡Ó≤ª∆•≈‰ 
-  	SDIO->ICR=0X5FF;	 				//«Â≥˝±Íº«
-	return (SdErr)(SDIO->RESP1&SD_OCR_ERRORBITS);//∑µªÿø®œÏ”¶
+	if(SDIO->RESPCMD!=cmd)return SD_ILLEGAL_CMD;//ÂëΩ‰ª§‰∏çÂåπÈÖç 
+  	SDIO->ICR=0X5FF;	 				//Ê∏ÖÈô§Ê†áËÆ∞
+	return (SdErr)(SDIO->RESP1&SD_OCR_ERRORBITS);//ËøîÂõûÂç°ÂìçÂ∫î
 }
 
 GRSdio::SdErr GRSdio::cmd_res2_error()
@@ -1173,20 +1175,20 @@ GRSdio::SdErr GRSdio::cmd_res2_error()
  	while(timeout--)
 	{
 		status=SDIO->STA;
-		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRC¥ÌŒÛ/√¸¡ÓœÏ”¶≥¨ ±/“—æ≠ ’µΩœÏ”¶(CRC–£—È≥…π¶)	
+		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRCÈîôËØØ/ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂/Â∑≤ÁªèÊî∂Âà∞ÂìçÂ∫î(CRCÊ†°È™åÊàêÂäü)	
 	}
-  	if((timeout==0)||(status&(1<<2)))	//œÏ”¶≥¨ ±
+  	if((timeout==0)||(status&(1<<2)))	//ÂìçÂ∫îË∂ÖÊó∂
 	{																				    
 		errorstatus=SD_CMD_RSP_TIMEOUT; 
-		SDIO->ICR|=1<<2;				//«Â≥˝√¸¡ÓœÏ”¶≥¨ ±±Í÷æ
+		SDIO->ICR|=1<<2;				//Ê∏ÖÈô§ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂Ê†áÂøó
 		return errorstatus;
 	}	 
-	if(status&1<<0)						//CRC¥ÌŒÛ
+	if(status&1<<0)						//CRCÈîôËØØ
 	{								   
 		errorstatus=SD_CMD_CRC_FAIL;
-		SDIO->ICR|=1<<0;				//«Â≥˝œÏ”¶±Í÷æ
+		SDIO->ICR|=1<<0;				//Ê∏ÖÈô§ÂìçÂ∫îÊ†áÂøó
  	}
-	SDIO->ICR=0X5FF;	 				//«Â≥˝±Íº«
+	SDIO->ICR=0X5FF;	 				//Ê∏ÖÈô§Ê†áËÆ∞
  	return errorstatus;		
 }
 
@@ -1196,14 +1198,14 @@ GRSdio::SdErr GRSdio::cmd_res3_error()
  	while(1)
 	{
 		status=SDIO->STA;
-		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRC¥ÌŒÛ/√¸¡ÓœÏ”¶≥¨ ±/“—æ≠ ’µΩœÏ”¶(CRC–£—È≥…π¶)	
+		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRCÈîôËØØ/ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂/Â∑≤ÁªèÊî∂Âà∞ÂìçÂ∫î(CRCÊ†°È™åÊàêÂäü)	
 	}
- 	if(status&(1<<2))					//œÏ”¶≥¨ ±
+ 	if(status&(1<<2))					//ÂìçÂ∫îË∂ÖÊó∂
 	{											 
-		SDIO->ICR|=1<<2;				//«Â≥˝√¸¡ÓœÏ”¶≥¨ ±±Í÷æ
+		SDIO->ICR|=1<<2;				//Ê∏ÖÈô§ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂Ê†áÂøó
 		return SD_CMD_RSP_TIMEOUT;
 	}	 
-   	SDIO->ICR=0X5FF;	 				//«Â≥˝±Íº«
+   	SDIO->ICR=0X5FF;	 				//Ê∏ÖÈô§Ê†áËÆ∞
  	return SD_OK;		
 }
 
@@ -1215,27 +1217,27 @@ GRSdio::SdErr GRSdio::cmd_res6_error(u8 cmd,u16*prca)
  	while(1)
 	{
 		status=SDIO->STA;
-		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRC¥ÌŒÛ/√¸¡ÓœÏ”¶≥¨ ±/“—æ≠ ’µΩœÏ”¶(CRC–£—È≥…π¶)	
+		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRCÈîôËØØ/ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂/Â∑≤ÁªèÊî∂Âà∞ÂìçÂ∫î(CRCÊ†°È™åÊàêÂäü)	
 	}
-	if(status&(1<<2))					//œÏ”¶≥¨ ±
+	if(status&(1<<2))					//ÂìçÂ∫îË∂ÖÊó∂
 	{																				    
- 		SDIO->ICR|=1<<2;				//«Â≥˝√¸¡ÓœÏ”¶≥¨ ±±Í÷æ
+ 		SDIO->ICR|=1<<2;				//Ê∏ÖÈô§ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂Ê†áÂøó
 		return SD_CMD_RSP_TIMEOUT;
 	}	 	 
-	if(status&1<<0)						//CRC¥ÌŒÛ
+	if(status&1<<0)						//CRCÈîôËØØ
 	{								   
-		SDIO->ICR|=1<<0;				//«Â≥˝œÏ”¶±Í÷æ
+		SDIO->ICR|=1<<0;				//Ê∏ÖÈô§ÂìçÂ∫îÊ†áÂøó
  		return SD_CMD_CRC_FAIL;
 	}
-	if(SDIO->RESPCMD!=cmd)				//≈–∂œ «∑ÒœÏ”¶cmd√¸¡Ó
+	if(SDIO->RESPCMD!=cmd)				//Âà§Êñ≠ÊòØÂê¶ÂìçÂ∫îcmdÂëΩ‰ª§
 	{
  		return SD_ILLEGAL_CMD; 		
 	}	    
-	SDIO->ICR=0X5FF;	 				//«Â≥˝À˘”–±Íº«
-	rspr1=SDIO->RESP1;					//µ√µΩœÏ”¶ 	 
+	SDIO->ICR=0X5FF;	 				//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞
+	rspr1=SDIO->RESP1;					//ÂæóÂà∞ÂìçÂ∫î 	 
 	if(SD_ALLZERO==(rspr1&(SD_R6_GENERAL_UNKNOWN_ERROR|SD_R6_ILLEGAL_CMD|SD_R6_COM_CRC_FAILED)))
 	{
-		*prca=(u16)(rspr1>>16);			//”““∆16Œªµ√µΩ,rca
+		*prca=(u16)(rspr1>>16);			//Âè≥Áßª16‰ΩçÂæóÂà∞,rca
 		return errorstatus;
 	}
    	if(rspr1&SD_R6_GENERAL_UNKNOWN_ERROR)return SD_GENERAL_UNKNOWN_ERROR;
@@ -1252,18 +1254,18 @@ GRSdio::SdErr GRSdio::cmd_res7_error()
  	while(timeout--)
 	{
 		status=SDIO->STA;
-		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRC¥ÌŒÛ/√¸¡ÓœÏ”¶≥¨ ±/“—æ≠ ’µΩœÏ”¶(CRC–£—È≥…π¶)	
+		if(status&((1<<0)|(1<<2)|(1<<6)))break;//CRCÈîôËØØ/ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂/Â∑≤ÁªèÊî∂Âà∞ÂìçÂ∫î(CRCÊ†°È™åÊàêÂäü)	
 	}
- 	if((timeout==0)||(status&(1<<2)))	//œÏ”¶≥¨ ±
+ 	if((timeout==0)||(status&(1<<2)))	//ÂìçÂ∫îË∂ÖÊó∂
 	{																				    
-		errorstatus=SD_CMD_RSP_TIMEOUT;	//µ±«∞ø®≤ª «2.0ºÊ»›ø®,ªÚ’ﬂ≤ª÷ß≥÷…Ë∂®µƒµÁ—π∑∂Œß
-		SDIO->ICR|=1<<2;				//«Â≥˝√¸¡ÓœÏ”¶≥¨ ±±Í÷æ
+		errorstatus=SD_CMD_RSP_TIMEOUT;	//ÂΩìÂâçÂç°‰∏çÊòØ2.0ÂÖºÂÆπÂç°,ÊàñËÄÖ‰∏çÊîØÊåÅËÆæÂÆöÁöÑÁîµÂéãËåÉÂõ¥
+		SDIO->ICR|=1<<2;				//Ê∏ÖÈô§ÂëΩ‰ª§ÂìçÂ∫îË∂ÖÊó∂Ê†áÂøó
 		return errorstatus;
 	}	 
-	if(status&1<<6)						//≥…π¶Ω” ’µΩœÏ”¶
+	if(status&1<<6)						//ÊàêÂäüÊé•Êî∂Âà∞ÂìçÂ∫î
 	{								   
 		errorstatus=SD_OK;
-		SDIO->ICR|=1<<6;				//«Â≥˝œÏ”¶±Í÷æ
+		SDIO->ICR|=1<<6;				//Ê∏ÖÈô§ÂìçÂ∫îÊ†áÂøó
  	}
 	return errorstatus;
 }
@@ -1275,38 +1277,38 @@ GRSdio::SdErr GRSdio::en_wide_bus(u8 enx)
 	u8 arg=0X00;
 	if(enx)arg=0X02;
 	else arg=0X00;
- 	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//SDø®¥¶”⁄LOCKED◊¥Ã¨		    
- 	errorstatus=find_scr(RCA,scr);						//µ√µΩSCRºƒ¥Ê∆˜ ˝æ›
+ 	if(SDIO->RESP1&SD_CARD_LOCKED)return SD_LOCK_UNLOCK_FAILED;//SDÂç°Â§Ñ‰∫éLOCKEDÁä∂ÊÄÅ		    
+ 	errorstatus=find_scr(RCA,scr);						//ÂæóÂà∞SCRÂØÑÂ≠òÂô®Êï∞ÊçÆ
  	if(errorstatus!=SD_OK)return errorstatus;
-	if((scr[1]&SD_WIDE_BUS_SUPPORT)!=SD_ALLZERO)		//÷ß≥÷øÌ◊‹œﬂ
+	if((scr[1]&SD_WIDE_BUS_SUPPORT)!=SD_ALLZERO)		//ÊîØÊåÅÂÆΩÊÄªÁ∫ø
 	{
-	 	send_cmd(SD_CMD_APP_CMD,1,(u32)RCA<<16);	//∑¢ÀÕCMD55+RCA,∂ÃœÏ”¶											  
+	 	send_cmd(SD_CMD_APP_CMD,1,(u32)RCA<<16);	//ÂèëÈÄÅCMD55+RCA,Áü≠ÂìçÂ∫î											  
 	 	errorstatus=cmd_res1_error(SD_CMD_APP_CMD);
 	 	if(errorstatus!=SD_OK)return errorstatus; 
-	 	send_cmd(SD_CMD_APP_SD_SET_BUSWIDTH,1,arg);//∑¢ÀÕACMD6,∂ÃœÏ”¶,≤Œ ˝:10,4Œª;00,1Œª.											  
+	 	send_cmd(SD_CMD_APP_SD_SET_BUSWIDTH,1,arg);//ÂèëÈÄÅACMD6,Áü≠ÂìçÂ∫î,ÂèÇÊï∞:10,4‰Ωç;00,1‰Ωç.											  
 		errorstatus=cmd_res1_error(SD_CMD_APP_SD_SET_BUSWIDTH);
 		return errorstatus;
-	}else return SD_REQUEST_NOT_APPLICABLE;				//≤ª÷ß≥÷øÌ◊‹œﬂ…Ë÷√ 	 
+	}else return SD_REQUEST_NOT_APPLICABLE;				//‰∏çÊîØÊåÅÂÆΩÊÄªÁ∫øËÆæÁΩÆ 	 
 }
 
 GRSdio::SdErr GRSdio::is_card_programming(u8 *pstatus)
 {
  	vu32 respR1 = 0, status = 0; 
-  	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);		//∑¢ÀÕCMD13 	   
+  	send_cmd(SD_CMD_SEND_STATUS,1,(u32)RCA<<16);		//ÂèëÈÄÅCMD13 	   
   	status=SDIO->STA;
-	while(!(status&((1<<0)|(1<<6)|(1<<2))))status=SDIO->STA;//µ»¥˝≤Ÿ◊˜ÕÍ≥…
-   	if(status&(1<<0))			//CRCºÏ≤‚ ß∞‹
+	while(!(status&((1<<0)|(1<<6)|(1<<2))))status=SDIO->STA;//Á≠âÂæÖÊìç‰ΩúÂÆåÊàê
+   	if(status&(1<<0))			//CRCÊ£ÄÊµãÂ§±Ë¥•
 	{
-		SDIO->ICR|=1<<0;		//«Â≥˝¥ÌŒÛ±Íº«
+		SDIO->ICR|=1<<0;		//Ê∏ÖÈô§ÈîôËØØÊ†áËÆ∞
 		return SD_CMD_CRC_FAIL;
 	}
-   	if(status&(1<<2))			//√¸¡Ó≥¨ ± 
+   	if(status&(1<<2))			//ÂëΩ‰ª§Ë∂ÖÊó∂ 
 	{
-		SDIO->ICR|=1<<2;		//«Â≥˝¥ÌŒÛ±Íº«
+		SDIO->ICR|=1<<2;		//Ê∏ÖÈô§ÈîôËØØÊ†áËÆ∞
 		return SD_CMD_RSP_TIMEOUT;
 	}
  	if(SDIO->RESPCMD!=SD_CMD_SEND_STATUS)return SD_ILLEGAL_CMD;
-	SDIO->ICR=0X5FF;	 		//«Â≥˝À˘”–±Íº«
+	SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§ÊâÄÊúâÊ†áËÆ∞
 	respR1=SDIO->RESP1;
 	*pstatus=(u8)((respR1>>9)&0x0000000F);
 	return SD_OK;
@@ -1317,47 +1319,47 @@ GRSdio::SdErr GRSdio::find_scr(u16 rca,u32 *pscr)
 	u32 index = 0; 
 	SdErr errorstatus = SD_OK;
 	u32 tempscr[2]={0,0};  
- 	send_cmd(SD_CMD_SET_BLOCKLEN,1,8);			//∑¢ÀÕCMD16,∂ÃœÏ”¶,…Ë÷√Block SizeŒ™8◊÷Ω⁄											  
+ 	send_cmd(SD_CMD_SET_BLOCKLEN,1,8);			//ÂèëÈÄÅCMD16,Áü≠ÂìçÂ∫î,ËÆæÁΩÆBlock Size‰∏∫8Â≠óËäÇ											  
  	errorstatus=cmd_res1_error(SD_CMD_SET_BLOCKLEN);
  	if(errorstatus!=SD_OK)return errorstatus;	    
-  	send_cmd(SD_CMD_APP_CMD,1,(u32)rca<<16);	//∑¢ÀÕCMD55,∂ÃœÏ”¶ 									  
+  	send_cmd(SD_CMD_APP_CMD,1,(u32)rca<<16);	//ÂèëÈÄÅCMD55,Áü≠ÂìçÂ∫î 									  
  	errorstatus=cmd_res1_error(SD_CMD_APP_CMD);
  	if(errorstatus!=SD_OK)return errorstatus;
-	send_data_cfg(SD_DATATIMEOUT,8,3,1);		//8∏ˆ◊÷Ω⁄≥§∂»,blockŒ™8◊÷Ω⁄,SDø®µΩSDIO.
-   	send_cmd(SD_CMD_SD_APP_SEND_SCR,1,0);		//∑¢ÀÕACMD51,∂ÃœÏ”¶,≤Œ ˝Œ™0											  
+	send_data_cfg(SD_DATATIMEOUT,8,3,1);		//8‰∏™Â≠óËäÇÈïøÂ∫¶,block‰∏∫8Â≠óËäÇ,SDÂç°Âà∞SDIO.
+   	send_cmd(SD_CMD_SD_APP_SEND_SCR,1,0);		//ÂèëÈÄÅACMD51,Áü≠ÂìçÂ∫î,ÂèÇÊï∞‰∏∫0											  
  	errorstatus=cmd_res1_error(SD_CMD_SD_APP_SEND_SCR);
  	if(errorstatus!=SD_OK)return errorstatus;							   
  	while(!(SDIO->STA&(SDIO_FLAG_RXOVERR|SDIO_FLAG_DCRCFAIL|SDIO_FLAG_DTIMEOUT|SDIO_FLAG_DBCKEND|SDIO_FLAG_STBITERR)))
 	{ 
-		if(SDIO->STA&(1<<21))//Ω” ’FIFO ˝æ›ø…”√
+		if(SDIO->STA&(1<<21))//Êé•Êî∂FIFOÊï∞ÊçÆÂèØÁî®
 		{
-			*(tempscr+index)=SDIO->FIFO;	//∂¡»°FIFOƒ⁄»›
+			*(tempscr+index)=SDIO->FIFO;	//ËØªÂèñFIFOÂÜÖÂÆπ
 			index++;
 			if(index>=2)break;
 		}
 	}
- 	if(SDIO->STA&(1<<3))		//Ω” ’ ˝æ›≥¨ ±
+ 	if(SDIO->STA&(1<<3))		//Êé•Êî∂Êï∞ÊçÆË∂ÖÊó∂
 	{										 
- 		SDIO->ICR|=1<<3;		//«Â≥˝±Íº«
+ 		SDIO->ICR|=1<<3;		//Ê∏ÖÈô§Ê†áËÆ∞
 		return SD_DATA_TIMEOUT;
 	}
-	else if(SDIO->STA&(1<<1))	//“—∑¢ÀÕ/Ω” ’µƒ ˝æ›øÈCRC–£—È¥ÌŒÛ
+	else if(SDIO->STA&(1<<1))	//Â∑≤ÂèëÈÄÅ/Êé•Êî∂ÁöÑÊï∞ÊçÆÂùóCRCÊ†°È™åÈîôËØØ
 	{
- 		SDIO->ICR|=1<<1;		//«Â≥˝±Íº«
+ 		SDIO->ICR|=1<<1;		//Ê∏ÖÈô§Ê†áËÆ∞
 		return SD_DATA_CRC_FAIL;   
 	}
-	else if(SDIO->STA&(1<<5))	//Ω” ’FIFO“Á≥ˆ
+	else if(SDIO->STA&(1<<5))	//Êé•Êî∂FIFOÊ∫¢Âá∫
 	{
- 		SDIO->ICR|=1<<5;		//«Â≥˝±Íº«
+ 		SDIO->ICR|=1<<5;		//Ê∏ÖÈô§Ê†áËÆ∞
 		return SD_RX_OVERRUN;   	   
 	}
-	else if(SDIO->STA&(1<<9))	//∆ ºŒªºÏ≤‚¥ÌŒÛ
+	else if(SDIO->STA&(1<<9))	//Ëµ∑Âßã‰ΩçÊ£ÄÊµãÈîôËØØ
 	{
- 		SDIO->ICR|=1<<9;		//«Â≥˝±Íº«
+ 		SDIO->ICR|=1<<9;		//Ê∏ÖÈô§Ê†áËÆ∞
 		return SD_START_BIT_ERR;    
 	}
-   	SDIO->ICR=0X5FF;	 		//«Â≥˝±Íº«	 
-	//∞— ˝æ›À≥–Ú∞¥8ŒªŒ™µ•Œªµππ˝¿¥.   	
+   	SDIO->ICR=0X5FF;	 		//Ê∏ÖÈô§Ê†áËÆ∞	 
+	//ÊääÊï∞ÊçÆÈ°∫Â∫èÊåâ8‰Ωç‰∏∫Âçï‰ΩçÂÄíËøáÊù•.   	
 	*(pscr+1)=((tempscr[0]&SD_0TO7BITS)<<24)|((tempscr[0]&SD_8TO15BITS)<<8)|((tempscr[0]&SD_16TO23BITS)>>8)|((tempscr[0]&SD_24TO31BITS)>>24);
 	*(pscr)=((tempscr[1]&SD_0TO7BITS)<<24)|((tempscr[1]&SD_8TO15BITS)<<8)|((tempscr[1]&SD_16TO23BITS)>>8)|((tempscr[1]&SD_24TO31BITS)>>24);
  	return errorstatus;
@@ -1376,23 +1378,23 @@ u8 GRSdio::convert_from_bytes_to_power_of_two(u16 NumberOfBytes)
 
 void GRSdio::sd_dma_config(u32*mbuf,u32 bufsize,u8 dir)
 {
- 	DMA2->IFCR|=(0XF<<12);				//«Â≥˝DMA2Õ®µ¿4µƒ∏˜÷÷±Íº«
- 	DMA2_Channel4->CCR&=~(1<<0);		//πÿ±’DMA Õ®µ¿4
-  DMA2_Channel4->CCR&=~(0X7FF<<4);	//«Â≥˝÷Æ«∞µƒ…Ë÷√,DIR,CIRC,PINC,MINC,PSIZE,MSIZE,PL,MEM2MEM
- 	DMA2_Channel4->CCR|=dir<<4;  		//¥”¥Ê¥¢∆˜∂¡   
-	DMA2_Channel4->CCR|=0<<5;  			//∆’Õ®ƒ£ Ω
-	DMA2_Channel4->CCR|=0<<6; 			//Õ‚…Ëµÿ÷∑∑«‘ˆ¡øƒ£ Ω
-	DMA2_Channel4->CCR|=1<<7;  			//¥Ê¥¢∆˜‘ˆ¡øƒ£ Ω
-	DMA2_Channel4->CCR|=2<<8;  			//Õ‚…Ë ˝æ›øÌ∂»Œ™32Œª
-	DMA2_Channel4->CCR|=2<<10; 			//¥Ê¥¢∆˜ ˝æ›øÌ∂»32Œª
-	DMA2_Channel4->CCR|=2<<12; 			//∏ﬂ”≈œ»º∂	  
-  DMA2_Channel4->CNDTR=bufsize/4;   	//DMA2,¥´ ‰ ˝æ›¡ø	  
- 	DMA2_Channel4->CPAR=(u32)&SDIO->FIFO;//DMA2 Õ‚…Ëµÿ÷∑ 
-	DMA2_Channel4->CMAR=(u32)mbuf; 		//DMA2,¥Ê¥¢∆˜µÿ÷∑
- 	DMA2_Channel4->CCR|=1<<0; 			//ø™∆ÙDMAÕ®µ¿
+ 	DMA2->IFCR|=(0XF<<12);				//Ê∏ÖÈô§DMA2ÈÄöÈÅì4ÁöÑÂêÑÁßçÊ†áËÆ∞
+ 	DMA2_Channel4->CCR&=~(1<<0);		//ÂÖ≥Èó≠DMA ÈÄöÈÅì4
+  DMA2_Channel4->CCR&=~(0X7FF<<4);	//Ê∏ÖÈô§‰πãÂâçÁöÑËÆæÁΩÆ,DIR,CIRC,PINC,MINC,PSIZE,MSIZE,PL,MEM2MEM
+ 	DMA2_Channel4->CCR|=dir<<4;  		//‰ªéÂ≠òÂÇ®Âô®ËØª   
+	DMA2_Channel4->CCR|=0<<5;  			//ÊôÆÈÄöÊ®°Âºè
+	DMA2_Channel4->CCR|=0<<6; 			//Â§ñËÆæÂú∞ÂùÄÈùûÂ¢ûÈáèÊ®°Âºè
+	DMA2_Channel4->CCR|=1<<7;  			//Â≠òÂÇ®Âô®Â¢ûÈáèÊ®°Âºè
+	DMA2_Channel4->CCR|=2<<8;  			//Â§ñËÆæÊï∞ÊçÆÂÆΩÂ∫¶‰∏∫32‰Ωç
+	DMA2_Channel4->CCR|=2<<10; 			//Â≠òÂÇ®Âô®Êï∞ÊçÆÂÆΩÂ∫¶32‰Ωç
+	DMA2_Channel4->CCR|=2<<12; 			//È´ò‰ºòÂÖàÁ∫ß	  
+  DMA2_Channel4->CNDTR=bufsize/4;   	//DMA2,‰º†ËæìÊï∞ÊçÆÈáè	  
+ 	DMA2_Channel4->CPAR=(u32)&SDIO->FIFO;//DMA2 Â§ñËÆæÂú∞ÂùÄ 
+	DMA2_Channel4->CMAR=(u32)mbuf; 		//DMA2,Â≠òÂÇ®Âô®Âú∞ÂùÄ
+ 	DMA2_Channel4->CCR|=1<<0; 			//ÂºÄÂêØDMAÈÄöÈÅì
 }
 
-//SDIO÷–∂œ∑˛ŒÒ∫Ø ˝		  
+//SDIO‰∏≠Êñ≠ÊúçÂä°ÂáΩÊï∞		  
 void SDIO_IRQHandler(void) 
 {											
 	if(GRCore::CIRQPtr(GRCore::Sdio))

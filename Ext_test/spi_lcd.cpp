@@ -151,7 +151,7 @@ void SpiLcd::drawPoint(u16 x,u16 y,GRColor_16 c)
 
 GRColor_16 SpiLcd::readPoint(u16 x,u16 y)
 {
-  u16 Data;
+  u16 Data = 0;
   setXY(x,y);
   write_data_8(0xff);
   return Data;

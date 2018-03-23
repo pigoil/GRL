@@ -27,7 +27,7 @@ public:
 	void enableRec(){rec_flag=false;rec_enable=true;};
 	void disableRec(){rec_enable=false;}
 	
-	virtual void CIRQ(){u8 no_use=getByte();rec_flag=true;};//读取并丢弃数据
+	virtual void CIRQ(){u8 no_use=getByte();GR_NO_USE(no_use);rec_flag=true;};//读取并丢弃数据
 private:
 	bool rec_flag;
 	bool rec_enable;
