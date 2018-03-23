@@ -18,16 +18,16 @@ public:
 	virtual ~GRI2c(){};
 
 	void 	sendByte(u8);
-	u8 		readByte(AckMode ack);//应答类型
-	u8 		write(u8 sAdd,u8 rAdd,u8 data);
+	u8		readByte(AckMode ack);//应答类型
+	u8		write(u8 sAdd,u8 rAdd,u8 data);
 	u8 		read(u8 sAdd,u8 rAdd);
 	u8 		write(u8 sAdd,u8 rAdd,u8* data,u32 cnt);
 	u8 		read(u8 sAdd,u8 rAdd,u8*data,u32 cnt);
 	
 private:
-	GRGpio &iic_sck,&iic_sda;
-	GPIO_TypeDef*		sda_port;
-	u8							sda_pin;
+	GRGpio			&m_iic_sck,&m_iic_sda;
+	GPIO_TypeDef*	m_sda_port;
+	u8				m_sda_pin;
 
 protected:
 	void sda_out();

@@ -95,7 +95,7 @@ GRGpio::operator bool()const
 /**************************************************************/
 //一组GPIO
 
-GRGpioPort::GRGpioPort(GPIO_TypeDef* port) : io_port(port)
+GRGpioPort::GRGpioPort(GPIO_TypeDef* port) : m_io_port(port)
 {
 	u8 rcc=((vu32)port - (vu32)GPIOA)>>10;
 	RCC->APB2ENR|=1<<(rcc+2);
@@ -103,37 +103,37 @@ GRGpioPort::GRGpioPort(GPIO_TypeDef* port) : io_port(port)
 
 void GRGpioPort::init()
 {
-	io_port->CRL &= io_inv_crl;
-	io_port->CRL |= io_crl;
-	io_port->CRH &= io_inv_crh;
-	io_port->CRH |= io_crh;
+	m_io_port->CRL &= m_io_inv_crl;
+	m_io_port->CRL |= m_io_crl;
+	m_io_port->CRH &= m_io_inv_crh;
+	m_io_port->CRH |= m_io_crh;
 }
 
 GRGpio GRGpioPort::pin(int p)
 {
-	return GRGpio(io_port,p);
+	return GRGpio(m_io_port,p);
 }
 
 GRGpioPort& GRGpioPort::operator<< (GRGpio::InputMode m)
 {
-	io_crl=0,io_crh=0;
-	io_inv_crl=0xFFFFFFFF,io_inv_crh=0xFFFFFFFF;
-	mode = m<<2;
+	m_io_crl=0,m_io_crh=0;
+	m_io_inv_crl=0xFFFFFFFF,m_io_inv_crh=0xFFFFFFFF;
+	m_mode = m<<2;
 	return *this;
 }
 
 GRGpioPort& GRGpioPort::operator<< (GRGpio::OutputMode m)
 {
-	io_crl=0,io_crh=0;
-	io_inv_crl=0xFFFFFFFF,io_inv_crh=0xFFFFFFFF;
-	mode = m<<2|GRGpio::Speed_50MHz;//默认50MHz速度
+	m_io_crl=0,m_io_crh=0;
+	m_io_inv_crl=0xFFFFFFFF,m_io_inv_crh=0xFFFFFFFF;
+	m_mode = m<<2|GRGpio::Speed_50MHz;//默认50MHz速度
 	return *this;
 }
 
 GRGpioPort& GRGpioPort::operator<< (GRGpio::OutputSpeed m)
 {
-	mode &= 0xC;
-	mode |= m;//默认推挽输出
+	m_mode &= 0xC;
+	m_mode |= m;//默认推挽输出
 	return *this;
 }
 
@@ -141,14 +141,14 @@ GRGpioPort& GRGpioPort::operator<< (int pin)
 {
 	if(pin<8)
 	{
-		io_crl |= (mode<<(pin<<2)); 
-		io_inv_crl &= ~(0xF<<(pin<<2));
+		m_io_crl |= (m_mode<<(pin<<2)); 
+		m_io_inv_crl &= ~(0xF<<(pin<<2));
 	}
 	else
 	{
 		pin-=8;
-		io_crh |= (mode<<(pin<<2));
-		io_inv_crh &= ~(0xF<<(pin<<2));
+		m_io_crh |= (m_mode<<(pin<<2));
+		m_io_inv_crh &= ~(0xF<<(pin<<2));
 	}
 	return *this;
 }

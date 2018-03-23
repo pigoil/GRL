@@ -28,7 +28,7 @@ private:
 	void init(SPI_TypeDef* port,ClockSpeed speed,\
 				ClockPolarity cpol,ClockPhase,\
 				DataFormat d_f,FrameFormat f_f);
-	SPI_TypeDef* spi_port;
+	SPI_TypeDef* m_spi_port;
 };
 
 GR_END_NAMESPACE

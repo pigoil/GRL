@@ -1,7 +1,7 @@
 #include "gr_timer.h"
 
 GRTimer::GRTimer(TIM_TypeDef* p,u16 arr,u16 psc,bool ui_en)
-	:timer_port(p),timer_arr(arr),timer_psc(psc)
+	:m_timer_port(p),m_timer_arr(arr),m_timer_psc(psc)
 {
 	init(p,arr,psc,ui_en);
 }
@@ -55,7 +55,7 @@ void GRTimer::init(TIM_TypeDef* p,u16 arr,u16 psc,bool ui_en)
 	setPsc(psc);
 	if(ui_en)
 	{
-		timer_port->DIER|=1<<0;
+		m_timer_port->DIER|=1<<0;
 		GRCore::NvicInit(1,3,int_channel,2);//如何控制优先级？
 		/*抢占优先级和响应优先级相同时按照中断表中的顺序*/
 		GRCore::CIRQReg(cirq_ch,this);
@@ -65,19 +65,19 @@ void GRTimer::init(TIM_TypeDef* p,u16 arr,u16 psc,bool ui_en)
 
 void GRTimer::setArr(u16 a)
 {
-	timer_port->ARR=a;
-	timer_arr=a;
+	m_timer_port->ARR=a;
+	m_timer_arr=a;
 }
 
 void GRTimer::setPsc(u16 p)
 {
-	timer_port->PSC=p;
-	timer_psc=p;
+	m_timer_port->PSC=p;
+	m_timer_psc=p;
 }
 
 u32 GRTimer::freq()
 {
-	return (u32)GRCore::SystemFreq()*1000000/(timer_psc+1)/(timer_arr+1);
+	return (u32)GRCore::SystemFreq()*1000000/(m_timer_psc+1)/(m_timer_arr+1);
 }
 
 double GRTimer::period()
@@ -98,24 +98,24 @@ void GRPwmGenerator::outputConfig(OutputCh ch,bool o_en,PwmMode mode,OutPolarity
 	switch(ch)
 	{
 		case CH1:
-			timer_port->CCMR1|=mode<<4;
-			timer_port->CCMR1|=1<<3;//预装载使能
-			timer_port->CCER|=(pol|o_en)<<0;
+			m_timer_port->CCMR1|=mode<<4;
+			m_timer_port->CCMR1|=1<<3;//预装载使能
+			m_timer_port->CCER|=(pol|o_en)<<0;
 			break;
 		case CH2:
-			timer_port->CCMR1|=mode<<12;
-			timer_port->CCMR1|=1<<11;//预装载使能
-		timer_port->CCER|=(pol|o_en)<<4;
+			m_timer_port->CCMR1|=mode<<12;
+			m_timer_port->CCMR1|=1<<11;//预装载使能
+		m_timer_port->CCER|=(pol|o_en)<<4;
 			break;
 		case CH3:
-			timer_port->CCMR2|=mode<<4;
-			timer_port->CCMR2|=1<<3;//预装载使能
-			timer_port->CCER|=(pol|o_en)<<8;
+			m_timer_port->CCMR2|=mode<<4;
+			m_timer_port->CCMR2|=1<<3;//预装载使能
+			m_timer_port->CCER|=(pol|o_en)<<8;
 			break;
 		case CH4:
-			timer_port->CCMR2|=mode<<12;
-			timer_port->CCMR2|=1<<11;//预装载使能
-			timer_port->CCER|=(pol|o_en)<<12;
+			m_timer_port->CCMR2|=mode<<12;
+			m_timer_port->CCMR2|=1<<11;//预装载使能
+			m_timer_port->CCER|=(pol|o_en)<<12;
 			break;
 		default:return;
 	}
@@ -126,16 +126,16 @@ void GRPwmGenerator::setCompareVal(OutputCh ch,u16 val)
 	switch(ch)
 	{
 		case CH1:
-			timer_port->CCR1=val;
+			m_timer_port->CCR1=val;
 			break;
 		case CH2:
-			timer_port->CCR2=val;
+			m_timer_port->CCR2=val;
 			break;
 		case CH3:
-			timer_port->CCR3=val;
+			m_timer_port->CCR3=val;
 			break;
 		case CH4:
-			timer_port->CCR4=val;
+			m_timer_port->CCR4=val;
 			break;
 		default: return;
 	}
@@ -146,20 +146,20 @@ u16 GRPwmGenerator::compareVal(OutputCh ch)
 	switch(ch)
 	{
 		case CH1:
-			return timer_port->CCR1;
+			return m_timer_port->CCR1;
 		case CH2:
-			return timer_port->CCR2;
+			return m_timer_port->CCR2;
 		case CH3:
-			return timer_port->CCR3;
+			return m_timer_port->CCR3;
 		case CH4:
-			return timer_port->CCR4;
+			return m_timer_port->CCR4;
 		default: return 0;
 	}
 }
 
 void GRPwmGenerator::setDuty(OutputCh ch,double duty)
 {
-	u16 tmp=duty*(timer_arr+1);
+	u16 tmp=duty*(m_timer_arr+1);
 	setCompareVal(ch,tmp);
 }
 

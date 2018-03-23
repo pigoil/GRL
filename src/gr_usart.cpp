@@ -2,10 +2,10 @@
 #include "gr_gpio.h"
 
 GRUsart::GRUsart(USART_TypeDef * p,u32 b,u8 pclk)
-	:rec_flag(false),rec_enable(false),usart_baud(b),usart_port(p)
+	:m_rec_flag(false),m_rec_enable(false),m_usart_baud(b),m_usart_port(p)
 {
-	if(!pclk)usart_pclk=GRCore::SystemFreq();//如果等于0则取当前主频
-	init(usart_port,usart_baud,usart_pclk);
+	if(!pclk)m_usart_pclk=GRCore::SystemFreq();//如果等于0则取当前主频
+	init(m_usart_port,m_usart_baud,m_usart_pclk);
 	switch((u32)p)
 	{
 		case USART1_BASE:
@@ -34,8 +34,8 @@ void GRUsart::init(USART_TypeDef* p,u32 b,u8 pclk)
 				GRGpio::init(GPIOA,9,GRGpio::AFPushPull,GRGpio::Speed_50MHz);
 				GRGpio::init(GPIOA,10,GRGpio::NormalInput);
 			}
-			usart_rcc=14;
-			RCC->APB2ENR|=1<<usart_rcc;
+			m_usart_rcc=14;
+			RCC->APB2ENR|=1<<m_usart_rcc;
 		
 			rec_int=GRMacro::USART1_REC_ENABLE;
 			irq_ch=USART1_IRQn;
@@ -44,14 +44,14 @@ void GRUsart::init(USART_TypeDef* p,u32 b,u8 pclk)
 		
 			break;
 		case USART2_BASE:
-			usart_pclk>>=1;//时钟频率减半
+			m_usart_pclk>>=1;//时钟频率减半
 			if(GRMacro::AFIO_AUTO_INIT)
 			{
 				GRGpio::init(GPIOA,2,GRGpio::AFPushPull,GRGpio::Speed_50MHz);
 				GRGpio::init(GPIOA,3,GRGpio::NormalInput);
 			}
-			usart_rcc=17;
-			RCC->APB1ENR|=1<<usart_rcc;
+			m_usart_rcc=17;
+			RCC->APB1ENR|=1<<m_usart_rcc;
 		
 			rec_int=GRMacro::USART2_REC_ENABLE;
 			irq_ch=USART2_IRQn;
@@ -60,14 +60,14 @@ void GRUsart::init(USART_TypeDef* p,u32 b,u8 pclk)
 		
 			break;
 		case USART3_BASE:
-			usart_pclk>>=1;
+			m_usart_pclk>>=1;
 			if(GRMacro::AFIO_AUTO_INIT)
 			{
 				GRGpio::init(GPIOB,10,GRGpio::AFPushPull,GRGpio::Speed_50MHz);
 				GRGpio::init(GPIOB,11,GRGpio::NormalInput);
 			}
-			usart_rcc=18;
-			RCC->APB1ENR|=1<<usart_rcc;
+			m_usart_rcc=18;
+			RCC->APB1ENR|=1<<m_usart_rcc;
 		
 			rec_int=GRMacro::USART3_REC_ENABLE;
 			irq_ch=USART2_IRQn;
@@ -82,10 +82,10 @@ void GRUsart::init(USART_TypeDef* p,u32 b,u8 pclk)
 	
 	if(rec_int)
 	{
-		usart_port->CR1|=1<<8;	//PE中断使能
-		usart_port->CR1|=1<<5;	//接收缓冲区非空中断使能
+		m_usart_port->CR1|=1<<8;	//PE中断使能
+		m_usart_port->CR1|=1<<5;	//接收缓冲区非空中断使能
 		GRCore::NvicInit(3,1,irq_ch,2);
-		rec_enable=true;
+		m_rec_enable=true;
 	}
 }
 void GRUsart::setBaud(u32 baud)
@@ -93,31 +93,31 @@ void GRUsart::setBaud(u32 baud)
 	float temp;
 	u16 mantissa;
 	u16 fraction;	   
-	temp=(float)((float)usart_pclk*1000000)/(baud*16);//得到USARTDIV
+	temp=(float)((float)m_usart_pclk*1000000)/(baud*16);//得到USARTDIV
 	mantissa=(u16)temp;				 //得到整数部分
 	fraction=(temp-mantissa)*16; //得到小数部分	 
   mantissa<<=4;
 	mantissa+=fraction; 
 	
-	if((u32)usart_port==USART1_BASE)
+	if((u32)m_usart_port==USART1_BASE)
 	{
-		RCC->APB2RSTR|=1<<usart_rcc;   //复位串口1
-		RCC->APB2RSTR&=~(1<<usart_rcc);//停止复位	  
+		RCC->APB2RSTR|=1<<m_usart_rcc;   //复位串口1
+		RCC->APB2RSTR&=~(1<<m_usart_rcc);//停止复位	  
 	}
 	else
 	{
-		RCC->APB1RSTR|=1<<usart_rcc;   //复位串口2、3
-		RCC->APB1RSTR&=~(1<<usart_rcc);//停止复位	 
+		RCC->APB1RSTR|=1<<m_usart_rcc;   //复位串口2、3
+		RCC->APB1RSTR&=~(1<<m_usart_rcc);//停止复位	 
 	}
 	//波特率设置
- 	usart_port->BRR=mantissa; // 波特率设置	 
-	usart_port->CR1|=0X200C;  //1位停止,无校验位.
+ 	m_usart_port->BRR=mantissa; // 波特率设置	 
+	m_usart_port->CR1|=0X200C;  //1位停止,无校验位.
 }
 
 void GRUsart::sendByte(u8 byte)
 {
-	while((usart_port->SR&0X40)==0);
-	usart_port->DR=byte;
+	while((m_usart_port->SR&0X40)==0);
+	m_usart_port->DR=byte;
 }
 
 void GRUsart::sendBuf(u8* buf,u32 size)
@@ -140,7 +140,7 @@ void GRUsart::sendStr(const char* str)
 GRUsartPkg::GRUsartPkg(USART_TypeDef * p,u32 b,u8 pclk)
 	:GRUsart(p,b,pclk)
 {
-	recv_format_sheet=new GRLinkedList<Block>;
+	m_recv_format_sheet=new GRLinkedList<Block>;
 	recv_data=new GRLinkedList<u8>;
 	//recv_format_sheet->rstPtr(0);
 	return;
@@ -148,7 +148,7 @@ GRUsartPkg::GRUsartPkg(USART_TypeDef * p,u32 b,u8 pclk)
 
 GRUsartPkg::~GRUsartPkg()
 {
-	delete recv_format_sheet;
+	delete m_recv_format_sheet;
 	delete recv_data;
 }
 
@@ -157,22 +157,22 @@ void GRUsartPkg::add_format(Format t_b,u8 data)
 	Block tmp;
 	tmp.data=data;
 	tmp.type=t_b;	
-	recv_format_sheet->addToTail(tmp);
+	m_recv_format_sheet->addToTail(tmp);
 }
 
 void GRUsartPkg::clear_format_sheet()
 {
-	recv_format_sheet->clear();
+	m_recv_format_sheet->clear();
 }
 
 void GRUsartPkg::CIRQ()
 {
-	if(recv_format_sheet->isEmpty())//如果没有设置格式表
+	if(m_recv_format_sheet->isEmpty())//如果没有设置格式表
 		return;//直接跳出
 	
 	//static u32	cnt=0;
 	static bool	f_SOF=false;
-	static GRLinkedList<Block>::iterator it = recv_format_sheet->head();//链表迭代器，初始化为链表的头部
+	static GRLinkedList<Block>::iterator it = m_recv_format_sheet->head();//链表迭代器，初始化为链表的头部
 	u8 DR=getByte();
 	//Block		tmp;
 
@@ -201,7 +201,7 @@ void GRUsartPkg::CIRQ()
 			{
 				if((*it).data!=DR)//错误的SOF或EOF
 				{
-					it = recv_format_sheet->head();//复位格式表迭代器
+					it = m_recv_format_sheet->head();//复位格式表迭代器
 					recv_data->clear();//清空接收区
 					f_SOF=false;
 					return;
@@ -221,7 +221,7 @@ void GRUsartPkg::CIRQ()
 			setRecFlag();//置位接收完成标志
 			disableRec();//关闭接收
 			acknowledge();//应答
-			it = recv_format_sheet->head();//复位格式表迭代器
+			it = m_recv_format_sheet->head();//复位格式表迭代器
 			f_SOF=false;
 			return;
 		}

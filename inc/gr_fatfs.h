@@ -55,7 +55,7 @@ public:
 	FRESULT seek(u32 pt);//读写指针移动
 
 	u32 size();//返回大小
-	u32 rwFlag(){return rw_flag;};//读取读写变量值
+	u32 rwFlag(){return m_rw_flag;};//读取读写变量值
 
 	FRESULT write(u8* buf,u32 cnt);
 	FRESULT read(u8* buf,u32 cnt);
@@ -65,10 +65,10 @@ public:
 	#endif
 	
 private:
-	FIL fil;
-	BYTE mode;
-	u32 rw_flag;
-	const TCHAR* full_name;
+	FIL m_fil;
+	BYTE m_mode;
+	u32 m_rw_flag;
+	const TCHAR* m_full_name;
 };
 
 class GRDir
@@ -76,8 +76,8 @@ class GRDir
 public:
 	
 private:
-	DIR dir;
-	const TCHAR* full_path;
+	DIR m_dir;
+	const TCHAR* m_full_path;
 };
 
 #endif

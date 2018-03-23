@@ -60,12 +60,12 @@ public:
 	GRGpio			operator[](int);
 
 private:
-	u32 io_crl;
-	u32 io_crh;
-	u32 io_inv_crl;
-	u32 io_inv_crh;
-	u8 mode;
-	GPIO_TypeDef* io_port;
+	u32 m_io_crl;
+	u32 m_io_crh;
+	u32 m_io_inv_crl;
+	u32 m_io_inv_crh;
+	u8 	m_mode;
+	GPIO_TypeDef* m_io_port;
 };
 
 GR_END_NAMESPACE

@@ -16,7 +16,9 @@ public:
 	enum SampleTime{Cycle1_5,Cycle7_5,Cycle13_5,Cycle28_5,Cycle41_5,Cycle55_5,Cycle71_5,Cycle239_5};
 	
 	GRAdc(ADC_TypeDef*,AdcMode);
+
 	virtual ~GRAdc(){};
+
 	static void init(ADC_TypeDef*,AdcMode);
 	void calibrate();
 	
@@ -31,11 +33,11 @@ public:
 	virtual void CIRQ(){};
 	
 private:
-	ADC_TypeDef* port;
-	AdcMode mode;
-	u8 sq_cnt;
-	u16 mea_data[16];//十六个序列的转换结果
-	u8 sq_ch[CH_CNT];//十八个通道在转换序列中的顺序，255为不在转换序列中
+	ADC_TypeDef* m_port;
+	AdcMode m_mode;
+	u8 m_sq_cnt;
+	u16 m_mea_data[16];//十六个序列的转换结果
+	u8 m_sq_ch[CH_CNT];//十八个通道在转换序列中的顺序，255为不在转换序列中
 };
 
 class GRInnerTemperature : public GRAdc

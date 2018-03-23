@@ -16,22 +16,22 @@ public:
 
 	virtual ~GRTimer(){};
 
-	TIM_TypeDef* 	port(){return timer_port;};
-	u16 					arr(){return timer_arr;}
-	u16 					psc(){return timer_psc;}
+	TIM_TypeDef* 	port(){return m_timer_port;};
+	u16 					arr(){return m_timer_arr;}
+	u16 					psc(){return m_timer_psc;}
 	void 					setArr(u16 a);
 	void 					setPsc(u16 p);
-	void 					start(){timer_port->CR1|=1;};
-	void 					stop(){timer_port->CR1&=~1;};
+	void 					start(){m_timer_port->CR1|=1;};
+	void 					stop(){m_timer_port->CR1&=~1;};
 	u32						freq();//返回计数频率，单位Hz
 	double				period();//返回计数周期，单位us
-	u16						cnt(){return timer_port->CNT;};//返回计数值
+	u16						cnt(){return m_timer_port->CNT;};//返回计数值
 	
 	virtual void CIRQ(){return;};
 protected:
-	TIM_TypeDef* timer_port;
-	u16 timer_arr;
-	u16 timer_psc;
+	TIM_TypeDef* m_timer_port;
+	u16 m_timer_arr;
+	u16 m_timer_psc;
 
 	void init(TIM_TypeDef*,u16 arr,u16 psc,bool ui_en);
 };

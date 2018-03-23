@@ -48,14 +48,14 @@ public:
 	void setMinutes(Minutes mm);
 	void setSeconds(Seconds ss);
 	
-	Years year(){return o_year;}
-	Months month(){return e_month;}
-	Dates date(){return o_date;}
-	Weeks week(){return e_week;}
-	Hours hour(){return o_hour;}
-	Minutes minute(){return o_min;}
-	Seconds second(){return o_sec;}
-	u32 secsSinceEpoch(){return secs_since_epoch;}
+	Years year(){return m_year;}
+	Months month(){return m_month;}
+	Dates date(){return m_date;}
+	Weeks week(){return m_week;}
+	Hours hour(){return m_hour;}
+	Minutes minute(){return m_min;}
+	Seconds second(){return m_sec;}
+	u32 secsSinceEpoch(){return m_secs_since_epoch;}
 	
 	bool isLeapYear(Years yy);
 	//const char* dateTimeInString(){return time_in_string;}
@@ -67,15 +67,15 @@ public:
 	
 private:
 
-	Years o_year;
-	Months e_month;
-	Dates o_date;
-	Hours o_hour;
-	Minutes o_min;
-	Seconds o_sec;
-	Weeks e_week;	
+	Years	m_year;
+	Months	m_month;
+	Dates	m_date;
+	Hours	m_hour;
+	Minutes m_min;
+	Seconds m_sec;
+	Weeks	m_week;
 	
-	u32 secs_since_epoch;
+	u32 m_secs_since_epoch;
 	//char time_in_string[20];
 	
 	void sync_data(Years yy,Months MM,Dates dd,Hours hh,Minutes mm,Seconds ss);

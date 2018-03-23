@@ -4,7 +4,7 @@
 GRSpi::GRSpi(SPI_TypeDef* port,ClockSpeed speed,\
 				ClockPolarity cpol,ClockPhase cpha,\
 				DataFormat d_f,FrameFormat f_f)
-	:spi_port(port)
+	:m_spi_port(port)
 {
 	init(port,speed,cpol,cpha,d_f,f_f);
 }
@@ -63,25 +63,25 @@ void GRSpi::init(SPI_TypeDef* port,ClockSpeed speed,\
 
 void GRSpi::speedSet(ClockSpeed speed)
 {
-	spi_port->CR1&=0xFFC7;//清空
-	spi_port->CR1|=speed<<3;
+	m_spi_port->CR1&=0xFFC7;//清空
+	m_spi_port->CR1|=speed<<3;
 	SPI2->CR1|=1<<6; //SPI设备使能	  
 }
 
 u16 GRSpi::transByte(u16 data)
 {
 	u16 retry=0;				 
-	while((spi_port->SR&1<<1)==0)//等待发送区空	
+	while((m_spi_port->SR&1<<1)==0)//等待发送区空	
 	{
 		retry++;
 		//if(retry>500)return 0;
 	}			  
-	spi_port->DR=data;	 	  //发送一个byte 
+	m_spi_port->DR=data;	 	  //发送一个byte 
 	retry=0;
-	while((spi_port->SR&1<<0)==0) //等待接收完一个byte  
+	while((m_spi_port->SR&1<<0)==0) //等待接收完一个byte  
 	{
 		retry++;
 		//if(retry>500)return 0;
 	}	  						    
-	return spi_port->DR;          //返回收到的数据		
+	return m_spi_port->DR;          //返回收到的数据		
 }

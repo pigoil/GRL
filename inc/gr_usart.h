@@ -18,23 +18,23 @@ public:
 	void sendByte(u8 byte);
 	void sendBuf(u8* buf,u32 size);
 	void sendStr(const char* str);
-	u8 getByte(){return usart_port->DR;};
+	u8 getByte(){return m_usart_port->DR;};
 	
-	bool isReceived(){return rec_flag;};
-	void setRecFlag(){rec_flag=true;}
-	void resetRecFlag(){rec_flag=false;};
-	bool isRecEnable(){return rec_enable;};
-	void enableRec(){rec_flag=false;rec_enable=true;};
-	void disableRec(){rec_enable=false;}
+	bool isReceived(){return m_rec_flag;};
+	void setRecFlag(){m_rec_flag=true;}
+	void resetRecFlag(){m_rec_flag=false;};
+	bool isRecEnable(){return m_rec_enable;};
+	void enableRec(){m_rec_flag=false;m_rec_enable=true;};
+	void disableRec(){m_rec_enable=false;}
 	
-	virtual void CIRQ(){u8 no_use=getByte();GR_NO_USE(no_use);rec_flag=true;};//读取并丢弃数据
+	virtual void CIRQ(){u8 no_use=getByte();GR_NO_USE(no_use);m_rec_flag=true;};//读取并丢弃数据
 private:
-	bool rec_flag;
-	bool rec_enable;
-	u32 usart_baud;
-	u8 usart_pclk;
-	u8 usart_rcc;
-	USART_TypeDef* usart_port;
+	bool			m_rec_flag;
+	bool			m_rec_enable;
+	u32				m_usart_baud;
+	u8				m_usart_pclk;
+	u8				m_usart_rcc;
+	USART_TypeDef*	m_usart_port;
 };
 
 class GRUsartPkg : public GRUsart
@@ -57,9 +57,9 @@ private:
 	struct Block
 	{
 		Format	type;
-		u8			data;
+		u8		data;
 	};
-	GRLinkedList<Block> *recv_format_sheet;
+	GRLinkedList<Block> *m_recv_format_sheet;
 };
 
 GR_END_NAMESPACE

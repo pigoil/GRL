@@ -60,7 +60,7 @@ u32 GRFatFs::getTotal(u8 pdrv)
 ***FILE相关接口封装***
 **********************/
 GRFile::GRFile(const TCHAR* n,BYTE m):
-		mode(m),full_name(n)
+		m_mode(m),m_full_name(n)
 {
 	//nothing to do
 }
@@ -72,42 +72,42 @@ GRFile::~GRFile()
 
 FRESULT GRFile::open()
 {
-	return f_open(&fil,full_name,mode);
+	return f_open(&m_fil,m_full_name,m_mode);
 }
 
 FRESULT GRFile::close()
 {
-	return f_close(&fil);
+	return f_close(&m_fil);
 }
 
 FRESULT GRFile::flush()
 {
-	return f_sync(&fil);
+	return f_sync(&m_fil);
 }
 
 u32 GRFile::tell()
 {
-	return (u32)f_tell(&fil);
+	return (u32)f_tell(&m_fil);
 }
 
 FRESULT GRFile::seek(u32 pt)
 {
-	return f_lseek(&fil,pt);
+	return f_lseek(&m_fil,pt);
 }
 
 u32 GRFile::size()
 {
-	return (u32)f_size(&fil);
+	return (u32)f_size(&m_fil);
 }
 
 FRESULT GRFile::write(u8* buf,u32 cnt)
 {
-	return f_write(&fil,buf,(UINT)cnt,(UINT*)&rw_flag);
+	return f_write(&m_fil,buf,(UINT)cnt,(UINT*)&m_rw_flag);
 }
 
 FRESULT GRFile::read(u8* buf,u32 cnt)
 {
-	return f_read(&fil,buf,(UINT)cnt,(UINT*)&rw_flag);
+	return f_read(&m_fil,buf,(UINT)cnt,(UINT*)&m_rw_flag);
 }
 
 #if USE_STDIO

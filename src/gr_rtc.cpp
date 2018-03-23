@@ -89,12 +89,12 @@ static const u16 EPOCH_YEAR = 1970;//纪元年份
 //static const u16 MAX_YEAR = 2100;//最大年份
 
 GRDateTime::GRDateTime(Years yy,Months MM,Dates dd,Hours hh,Minutes mm,Seconds ss):
-o_year(yy),
-e_month(MM),
-o_date(dd),
-o_hour(hh),
-o_min(mm),
-o_sec(ss)
+m_year(yy),
+m_month(MM),
+m_date(dd),
+m_hour(hh),
+m_min(mm),
+m_sec(ss)
 {
 	normalize();
 	sync_data(yy,MM,dd,hh,mm,ss);
@@ -102,21 +102,21 @@ o_sec(ss)
 }
 
 GRDateTime::GRDateTime(Years yy,u8 MM,Dates dd,Hours hh,Minutes mm,Seconds ss):
-	o_year(yy),
-	o_date(dd),
-	o_hour(hh),
-	o_min(mm),
-	o_sec(ss)
+	m_year(yy),
+	m_date(dd),
+	m_hour(hh),
+	m_min(mm),
+	m_sec(ss)
 {
-	if(MM < 1 || MM > 12)e_month = Jan;
-	else e_month = static_cast<Months>(MM);
+	if(MM < 1 || MM > 12)m_month = Jan;
+	else m_month = static_cast<Months>(MM);
 	normalize();
-	sync_data(yy,e_month,dd,hh,mm,ss);
+	sync_data(yy,m_month,dd,hh,mm,ss);
 	//fill_srting();
 }
 
 GRDateTime::GRDateTime(u32 secs):
-	secs_since_epoch(secs)
+	m_secs_since_epoch(secs)
 {
 	sync_data(secs);
 	//fill_srting();
@@ -144,7 +144,7 @@ GRDateTime::Weeks GRDateTime::week_calc(Years yy,Months MM,Dates dd)
 void GRDateTime::sync_data(Years yy,Months MM,Dates dd,Hours hh,Minutes mm,Seconds ss)
 {
 	u32 sec_cnt = 0;
-	for(u16 t=1970;t<o_year;++t)
+	for(u16 t=1970;t<m_year;++t)
 	{
 		if(isLeapYear(t))sec_cnt += 31622400;
 		else sec_cnt += 31536000;
@@ -159,8 +159,8 @@ void GRDateTime::sync_data(Years yy,Months MM,Dates dd,Hours hh,Minutes mm,Secon
 	sec_cnt+=(u32)mm*60;
 	sec_cnt+=ss;
 	
-	secs_since_epoch = sec_cnt;
-	e_week = week_calc(yy,MM,dd);
+	m_secs_since_epoch = sec_cnt;
+	m_week = week_calc(yy,MM,dd);
 }
 
 //根据纪元时间计算年月日时分秒和星期
@@ -171,10 +171,10 @@ void GRDateTime::sync_data(u32 secs)
 	
 	//计算年份	
 	u16 days_per_year = 365;//1970年是平年
-	for(o_year=1970 ; days>days_per_year ; ++o_year)
+	for(m_year=1970 ; days>days_per_year ; ++m_year)
 	{
 		days-=days_per_year;
-		days_per_year = isLeapYear(o_year+1) ? 366 : 365;
+		days_per_year = isLeapYear(m_year+1) ? 366 : 365;
 	}
 	//计算月份
 	u8 days_per_month = 31;//一月31天
@@ -182,16 +182,16 @@ void GRDateTime::sync_data(u32 secs)
 	for(month=1 ; days>days_per_month ; ++month)
 	{
 		days-=months_tab[month];
-		if(isLeapYear(o_year) && month==2)days-=1;
+		if(isLeapYear(m_year) && month==2)days-=1;
 		days_per_month = months_tab[month+1];
 	}
-	o_date = days+1;
-	e_month = static_cast<Months>(month);
+	m_date = days+1;
+	m_month = static_cast<Months>(month);
 	//计算小时
-	o_hour = remain/3600;
-	o_min = (remain%3600)/60;
-	o_sec = (remain%3600)%60;
-	e_week = week_calc(o_year,e_month,o_date);
+	m_hour = remain/3600;
+	m_min = (remain%3600)/60;
+	m_sec = (remain%3600)%60;
+	m_week = week_calc(m_year,m_month,m_date);
 }
 
 //返回当前年份是否是闰年
@@ -215,28 +215,28 @@ void GRDateTime::normalize()
 {
 	//数值要求
 	//年份区间限制
-	if(o_year < EPOCH_YEAR)o_year = EPOCH_YEAR;
+	if(m_year < EPOCH_YEAR)m_year = EPOCH_YEAR;
 	//else if(o_year > MAX_YEAR)o_year = MAX_YEAR;
 	//日期区间限制
-	if(!o_date)o_date=1;
-	else if(o_date > months_tab[e_month])//与平年月份表作比较
+	if(!m_date)m_date=1;
+	else if(m_date > months_tab[m_month])//与平年月份表作比较
 	{
-		if(e_month == Feb)//如果是二月
+		if(m_month == Feb)//如果是二月
 		{
-			if(isLeapYear(o_year))//如果是闰年
+			if(isLeapYear(m_year))//如果是闰年
 			{
-				if(o_date > 29)o_date = 29;
+				if(m_date > 29)m_date = 29;
 			}
-			else o_date = 28;
+			else m_date = 28;
 		}
-		o_date = months_tab[e_month];
+		m_date = months_tab[m_month];
 	}
 	//秒区间限制
-	if(o_sec > 59)o_sec = 0;		
+	if(m_sec > 59)m_sec = 0;		
 	//分钟区间限制
-	if(o_min > 59)o_min = 0;
+	if(m_min > 59)m_min = 0;
 	//小时区间限制
-	if(o_hour > 23)o_hour = 0;
+	if(m_hour > 23)m_hour = 0;
 }
 
 //void GRDateTime::fill_srting()

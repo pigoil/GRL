@@ -1,7 +1,7 @@
 #include "gr_adc.h"
 //单次模式：
 GRAdc::GRAdc(ADC_TypeDef* p ,AdcMode m)
-	:port(p),mode(m)
+	:m_port(p),m_mode(m)
 {
 	init(p,m);
 	calibrate();//校准
@@ -9,9 +9,9 @@ GRAdc::GRAdc(ADC_TypeDef* p ,AdcMode m)
 
 void GRAdc::calibrate()
 {
-	port->CR2|=1<<3;
+	m_port->CR2|=1<<3;
 	while(ADC1->CR2&1<<3); //等待校准结束 
-	port->CR2|=1<<2;        //开启AD校准	   
+	m_port->CR2|=1<<2;        //开启AD校准	   
 	while(ADC1->CR2&1<<2);  //等待校准结束	
 }
 
@@ -61,21 +61,21 @@ void GRAdc::init(ADC_TypeDef* p ,AdcMode m)
 u16 GRAdc::result(AdcChannel ch, SampleTime t)
 {
 	u16 res=0;
-	if(mode == Single)
+	if(m_mode == Single)
 	{
 		if((u8)ch > 9)
 		{
-			port->SMPR1 &= ~(7<<(3*((u8)ch-10)));
-			port->SMPR1 |= t<<(3*((u8)ch-10));
+			m_port->SMPR1 &= ~(7<<(3*((u8)ch-10)));
+			m_port->SMPR1 |= t<<(3*((u8)ch-10));
 		}else
 		{
-			port->SMPR2 &= ~(7<<(3*((u8)ch)));
-			port->SMPR2 |= t<<(3*((u8)ch));
+			m_port->SMPR2 &= ~(7<<(3*((u8)ch)));
+			m_port->SMPR2 |= t<<(3*((u8)ch));
 		}
 
-		port->SQR3  &= 0XFFFFFFE0;
-		port->SQR3|=ch;
-		port->CR2|=1<<22;
+		m_port->SQR3  &= 0XFFFFFFE0;
+		m_port->SQR3|=ch;
+		m_port->CR2|=1<<22;
 		while(!(ADC1->SR&1<<1));
 		res = ADC1->DR;
 	}
