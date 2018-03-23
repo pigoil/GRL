@@ -19,7 +19,7 @@ public:
 	GRSpi(SPI_TypeDef* port,ClockSpeed speed=Speed_256,\
 				ClockPolarity cpol=High,ClockPhase=SecondEdge,\
 				DataFormat d_f=Data_8bit,FrameFormat f_f=MSB);
-	~GRSpi();
+	virtual ~GRSpi();
 	
 	void speedSet(ClockSpeed);
 	u16 transByte(u16 data);

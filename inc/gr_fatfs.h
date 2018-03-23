@@ -25,7 +25,7 @@ class GRFatFs
 {
 public:
 	GRFatFs();
-	~GRFatFs();
+	virtual ~GRFatFs();
 	virtual u8 	disk_initialize (u8 pdrv)=0;
 	virtual u8 	disk_status (u8 pdrv)=0;
 	virtual u8 	disk_ioctl (u8 pdrv, u8 cmd, void* buff)=0;
@@ -46,7 +46,7 @@ class GRFile
 {
 public:
 	GRFile(const TCHAR*,BYTE mode);
-	~GRFile();
+	virtual ~GRFile();
 	FRESULT open();//打开文件
 	FRESULT close();//关闭并保存文件
 	FRESULT	flush();//刷新文件

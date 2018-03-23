@@ -16,6 +16,7 @@ public:
 	enum SampleTime{Cycle1_5,Cycle7_5,Cycle13_5,Cycle28_5,Cycle41_5,Cycle55_5,Cycle71_5,Cycle239_5};
 	
 	GRAdc(ADC_TypeDef*,AdcMode);
+	virtual ~GRAdc(){};
 	static void init(ADC_TypeDef*,AdcMode);
 	void calibrate();
 	

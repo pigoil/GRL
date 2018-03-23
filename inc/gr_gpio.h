@@ -15,9 +15,11 @@ public:
 	enum OutputMode{PushPull=0x00,OpenDrain=0x01,AFPushPull=0x02,AFOpenDrain=0x03};
 	enum OutputSpeed{Speed_10MHz=0x01,Speed_2MHz=0x02,Speed_50MHz=0x03};
 	
-	GRGpio(GPIO_TypeDef* port,u8 pin):io_port(port),io_pin(pin){};//不进行外设初始化
+	GRGpio(GPIO_TypeDef* port,u8 pin):io_port(port),io_pin(pin),io_mode(0){};//不进行外设初始化
 	GRGpio(GPIO_TypeDef* port,u8 pin,OutputMode mode,OutputSpeed speed=Speed_50MHz);
 	GRGpio(GPIO_TypeDef* port,u8 pin,InputMode mode);
+
+	virtual ~GRGpio(){};
 
 	static void init(GPIO_TypeDef* port,u8 pin,OutputMode mode,OutputSpeed speed=Speed_50MHz);
 	static void init(GPIO_TypeDef* port,u8 pin,InputMode mode);
@@ -45,6 +47,9 @@ class GRGpioPort
 {
 public:
 	GRGpioPort(GPIO_TypeDef* port);
+
+	virtual ~GRGpioPort(){};
+
 	void init();
 	GRGpio pin(int);
 

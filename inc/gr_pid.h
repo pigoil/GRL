@@ -19,6 +19,8 @@ class GRPid
 		GRPid(float kp,float ti,float td,float ur,float un,float time);
 		GRPid(Parameters p);
 		
+		virtual ~GRPid(){};
+
 		float pidOut(float exp,float mea);
 		float kp(){return _para.kp;}; void setKp(float f){_para.kp=f;update_data();};
 		float ti(){return _para.ti;}; void setTi(float f){_para.ti=f;update_data();};

@@ -12,6 +12,7 @@ class GRUsart
 {
 public:
 	GRUsart(USART_TypeDef * p,u32 b,u8 pclk=0);//pclk=0则使用当前主频
+	virtual ~GRUsart(){};
 	void init(USART_TypeDef *,u32,u8);
 	void setBaud(u32 baud);
 	void sendByte(u8 byte);
@@ -40,7 +41,7 @@ class GRUsartPkg : public GRUsart
 {
 	public:
 	GRUsartPkg(USART_TypeDef * p,u32 b,u8 pclk=0);
-	~GRUsartPkg();
+	virtual ~GRUsartPkg();
 	virtual void CIRQ();//类中断
 	
 protected:

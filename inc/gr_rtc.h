@@ -12,6 +12,8 @@ public:
 	GRRtc();
 	GRRtc(GRDateTime);
 	
+	virtual ~GRRtc(){};
+
 	bool setTimeOnce(GRDateTime);
 	bool setTimeForce(GRDateTime);
 	GRDateTime dateTime();
@@ -34,6 +36,8 @@ public:
 	GRDateTime(Years yy,u8 MM,Dates dd,Hours hh,Minutes mm,Seconds ss);
 	GRDateTime(u32 secs);
 	
+	virtual ~GRDateTime(){};
+
 	void setDateTime(Years yy,Months MM,Dates dd,Hours hh,Minutes mm,Seconds ss);
 	void setDateTime(u32 secs);
 	

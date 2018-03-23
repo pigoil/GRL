@@ -19,7 +19,7 @@ public:
 			Tim5,Tim6,Tim7,Tim8,
 			Sdio,
 			CH_CNT};//中断通道
-	//虚析构函数，声明该类为抽象类，不允许继承
+	//纯虚析构函数，声明该类为抽象类，不允许继承
 	virtual ~GRCore()=0;
 	//时钟相关函数
 	static void SystemIoInit();

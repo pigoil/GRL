@@ -13,6 +13,9 @@ class GRTimer
 {
 public:
 	GRTimer(TIM_TypeDef*,u16 arr,u16 psc,bool ui_en);
+
+	virtual ~GRTimer(){};
+
 	TIM_TypeDef* 	port(){return timer_port;};
 	u16 					arr(){return timer_arr;}
 	u16 					psc(){return timer_psc;}

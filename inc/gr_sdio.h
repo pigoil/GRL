@@ -131,6 +131,9 @@ public:
 	SdInfo cardInfo;
 	
 	GRSdio();
+
+	virtual ~GRSdio(){};
+
 	SdErr init();
 	
 	u8 readDisk(u8*buf,u32 sector,u8 cnt);

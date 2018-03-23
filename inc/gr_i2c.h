@@ -14,6 +14,9 @@ public:
 	enum AckMode{Ack,Nack};
 
 	GRI2c(GRGpio& sck,GRGpio& sda);
+
+	virtual ~GRI2c(){};
+
 	void 	sendByte(u8);
 	u8 		readByte(AckMode ack);//应答类型
 	u8 		write(u8 sAdd,u8 rAdd,u8 data);

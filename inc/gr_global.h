@@ -89,7 +89,7 @@ public:
 	
 	GRLinkedList<T>(u32 max=(u32)-1);
 	GRLinkedList<T>(GRLinkedList<T>&);
-	~GRLinkedList();	
+	virtual ~GRLinkedList();
 	iterator tail() const;
 	iterator head() const;
 	iterator at(u32 index);

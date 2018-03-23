@@ -43,6 +43,8 @@ class GRAbstractLCD
 public:
 	GRAbstractLCD();
 
+	virtual ~GRAbstractLCD()=0;
+
 	virtual void drawPoint(u16 x,u16 y)=0;//使用前景色画点
 	virtual void drawPoint(u16 x,u16 y,GRColor_16 color)=0;
 	virtual u16 readPoint(u16 x,u16 y)=0;
