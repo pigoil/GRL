@@ -1,8 +1,29 @@
 #include <GRCore>
 #include <GRGpio>
 #include <GRUsart>
+#include <GRTimer>
 
 #include "at24c.h"
+int a = 0;
+
+class shit : public GRTimer
+{
+public:
+	GRGpio LED;
+
+	shit():
+		GRTimer(TIM2,7199,999,true),
+		LED(GPIOB,9,GRGpio::PushPull)
+	{}
+
+
+protected:
+	void CIRQ()
+	{
+		LED = !LED;
+	}
+
+};
 
 void GRCore::SystemIoInit()
 {	
@@ -17,23 +38,12 @@ int main()
 	// 2.调用用户自定义的SystemIoInit函数进行IO初始化
 	//完成后才初始化静态变量，随后进入主函数
 	
-	GRGpio LED(GPIOB,9,GRGpio::PushPull);//LED初始化，闪灯用，PB5推挽输出
-	GRGpio KEY(GPIOB,10,GRGpio::PushPull);
-	LED=1;
-	GRCore::SleepMs(100);
-
-	LED=0;
-	GRCore::SleepMs(100);
-	LED=1;
-	
-	Setting setting;
-	while(!setting.check())
+	shit fuck;
+	fuck.start();
+	int b;
+	while(1)
 	{
-		LED=0;
-		GRCore::SleepMs(50);
-		LED=1;
-		GRCore::SleepMs(150);
+		b=a;
+		GRCore::SleepMs(1);
 	}
-	GRUsart com1(USART2,115200);
-	com1.sendStr("Welcome!");
 }

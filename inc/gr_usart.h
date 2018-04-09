@@ -11,6 +11,10 @@ class GRUsartPkg;
 class GRUsart
 {
 public:
+	friend void USART1_IRQHandler(void);
+	friend void USART2_IRQHandler(void);
+	friend void USART3_IRQHandler(void);
+
 	GRUsart(USART_TypeDef * p,u32 b,u8 pclk=0);//pclk=0则使用当前主频
 	virtual ~GRUsart(){};
 	void init(USART_TypeDef *,u32,u8);
@@ -27,7 +31,6 @@ public:
 	void enableRec(){m_rec_flag=false;m_rec_enable=true;};
 	void disableRec(){m_rec_enable=false;}
 	
-	virtual void CIRQ(){u8 no_use=getByte();GR_NO_USE(no_use);m_rec_flag=true;};//读取并丢弃数据
 private:
 	bool			m_rec_flag;
 	bool			m_rec_enable;
@@ -35,6 +38,9 @@ private:
 	u8				m_usart_pclk;
 	u8				m_usart_rcc;
 	USART_TypeDef*	m_usart_port;
+
+protected:
+	virtual void CIRQ(){u8 no_use=getByte();GR_NO_USE(no_use);m_rec_flag=true;};//读取并丢弃数据
 };
 
 class GRUsartPkg : public GRUsart

@@ -1,3 +1,7 @@
+#include "gr_global.h"
+
+GRCFunc void SDIO_IRQHandler(void);
+
 #include "gr_sdio.h"
 #include "string.h"	 
 
@@ -1394,10 +1398,9 @@ void GRSdio::sd_dma_config(u32*mbuf,u32 bufsize,u8 dir)
  	DMA2_Channel4->CCR|=1<<0; 			//开启DMA通道
 }
 
-//SDIO中断服务函数		  
-void SDIO_IRQHandler(void) 
-{											
+//中断服务函数
+void SDIO_IRQHandler()
+{
 	if(GRCore::CIRQPtr(GRCore::Sdio))
 		((GRSdio*)GRCore::CIRQPtr(GRCore::Sdio))->CIRQ();
-	return;
-}	 		
+}

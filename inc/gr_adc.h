@@ -30,14 +30,15 @@ public:
 	u32 trueRand(AdcChannel);//利用ADC电平噪声返回一个32位真随机数,应使用悬空的通道，
 	//可结合伪随机生成接口grRand，使用真随机数接口生成种子
 	
-	virtual void CIRQ(){};
-	
 private:
 	ADC_TypeDef* m_port;
 	AdcMode m_mode;
 	u8 m_sq_cnt;
 	u16 m_mea_data[16];//十六个序列的转换结果
 	u8 m_sq_ch[CH_CNT];//十八个通道在转换序列中的顺序，255为不在转换序列中
+
+protected:
+	virtual void CIRQ(){};
 };
 
 class GRInnerTemperature : public GRAdc

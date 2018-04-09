@@ -1,3 +1,9 @@
+#include "gr_global.h"
+
+GRCFunc void USART1_IRQHandler(void);
+GRCFunc void USART2_IRQHandler(void);
+GRCFunc void USART3_IRQHandler(void);
+
 #include "gr_usart.h"
 #include "gr_gpio.h"
 
@@ -70,7 +76,7 @@ void GRUsart::init(USART_TypeDef* p,u32 b,u8 pclk)
 			RCC->APB1ENR|=1<<m_usart_rcc;
 		
 			rec_int=GRMacro::USART3_REC_ENABLE;
-			irq_ch=USART2_IRQn;
+			irq_ch=USART3_IRQn;
 		
 			GRCore::CIRQReg(GRCore::Usart3,this);//注册类中断
 		
@@ -231,7 +237,7 @@ void GRUsartPkg::CIRQ()
 
 /*********中断服务入口定义**********/
 /*实现从硬件中断跳转到类中断*/
-GRCFunc void USART1_IRQHandler(void)
+void USART1_IRQHandler(void)
 {
 	if(USART1->SR&(1<<5))
 	{	
@@ -243,7 +249,7 @@ GRCFunc void USART1_IRQHandler(void)
 	return;
 }
 
-GRCFunc void USART2_IRQHandler(void)
+void USART2_IRQHandler(void)
 {
 	if(USART2->SR&(1<<5))
 	{	
@@ -255,7 +261,7 @@ GRCFunc void USART2_IRQHandler(void)
 	return;
 }
 
-GRCFunc void USART3_IRQHandler(void)
+void USART3_IRQHandler(void)
 {
 	if(USART3->SR&(1<<5))
 	{	

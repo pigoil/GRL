@@ -1,3 +1,13 @@
+#include "gr_global.h"
+
+//中断服务函数前置声明
+GRCFunc void TIM2_IRQHandler(void);
+GRCFunc void TIM3_IRQHandler(void);
+GRCFunc void TIM4_IRQHandler(void);
+GRCFunc void TIM5_IRQHandler(void);
+GRCFunc void TIM6_IRQHandler(void);
+GRCFunc void TIM7_IRQHandler(void);
+
 #include "gr_timer.h"
 
 GRTimer::GRTimer(TIM_TypeDef* p,u16 arr,u16 psc,bool ui_en)
@@ -75,12 +85,12 @@ void GRTimer::setPsc(u16 p)
 	m_timer_psc=p;
 }
 
-u32 GRTimer::freq()
+u32 GRTimer::freq()const
 {
 	return (u32)GRCore::SystemFreq()*1000000/(m_timer_psc+1)/(m_timer_arr+1);
 }
 
-double GRTimer::period()
+double GRTimer::period()const
 {
 	double f=freq();//Hz
 	f/=1000000.0;//MHz;
@@ -164,7 +174,7 @@ void GRPwmGenerator::setDuty(OutputCh ch,double duty)
 }
 
 /********************中断服务入口*************************/
-GRCFunc void TIM2_IRQHandler(void)
+void TIM2_IRQHandler(void)
 {
 	if(TIM2->SR&(1<<0))
 	{	
@@ -175,7 +185,7 @@ GRCFunc void TIM2_IRQHandler(void)
 	return;
 }
 
-GRCFunc void TIM3_IRQHandler(void)
+void TIM3_IRQHandler(void)
 {
 	if(TIM3->SR&(1<<0))
 	{	
@@ -186,7 +196,7 @@ GRCFunc void TIM3_IRQHandler(void)
 	return;
 }
 
-GRCFunc void TIM4_IRQHandler(void)
+void TIM4_IRQHandler(void)
 {
 	if(TIM4->SR&(1<<0))
 	{	
@@ -197,7 +207,7 @@ GRCFunc void TIM4_IRQHandler(void)
 	return;
 }
 
-GRCFunc void TIM5_IRQHandler(void)
+void TIM5_IRQHandler(void)
 {
 	if(TIM2->SR&(1<<0))
 	{	
@@ -208,7 +218,7 @@ GRCFunc void TIM5_IRQHandler(void)
 	return;
 }
 
-GRCFunc void TIM6_IRQHandler(void)
+void TIM6_IRQHandler(void)
 {
 	if(TIM6->SR&(1<<0))
 	{	
@@ -219,7 +229,7 @@ GRCFunc void TIM6_IRQHandler(void)
 	return;
 }
 
-GRCFunc void TIM7_IRQHandler(void)
+void TIM7_IRQHandler(void)
 {
 	if(TIM7->SR&(1<<0))
 	{	

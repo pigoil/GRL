@@ -6,6 +6,8 @@
 class GRSdio
 {
 public:
+	friend void SDIO_IRQHandler(void);
+
 	enum SdErr //错误定义
 	{
 			//特殊错误定义 
@@ -138,6 +140,8 @@ public:
 	
 	u8 readDisk(u8*buf,u32 sector,u8 cnt);
 	u8 writeDisk(u8*buf,u32 sector,u8 cnt);
+
+protected:
 	virtual void CIRQ();
 	
 private:

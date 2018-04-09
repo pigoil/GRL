@@ -35,12 +35,14 @@ public:
 	
 	GRGpio& operator= (bool);
 	operator bool()const;
-	
-	virtual void CIRQ(){};//待实现
+
 private:
 	GPIO_TypeDef* io_port;
 	u8 io_pin;
 	u8 io_mode;
+
+protected:
+	virtual void CIRQ(){};//待实现
 };
 
 class GRGpioPort

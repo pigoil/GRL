@@ -95,7 +95,8 @@ GRGpio::operator bool()const
 /**************************************************************/
 //一组GPIO
 
-GRGpioPort::GRGpioPort(GPIO_TypeDef* port) : m_io_port(port)
+GRGpioPort::GRGpioPort(GPIO_TypeDef* port):
+		m_io_port(port)
 {
 	u8 rcc=((vu32)port - (vu32)GPIOA)>>10;
 	RCC->APB2ENR|=1<<(rcc+2);
